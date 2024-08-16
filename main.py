@@ -34,7 +34,8 @@ def load_model(model_dir):
     tokenizer = AutoTokenizer.from_pretrained(
         model_dir,
         token = hf_token,
-        trust_remote_code=True    # for qwen, 240731 1805KZ
+        trust_remote_code=True,    # for qwen, 240731 1805KZ
+        padding_side='left'
         )
         
     model = AutoModelForCausalLM.from_pretrained(

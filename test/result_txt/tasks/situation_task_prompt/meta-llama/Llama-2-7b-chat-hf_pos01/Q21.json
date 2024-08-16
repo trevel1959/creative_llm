@@ -1,7 +1,0 @@
-[
-    "Use Alternative Data Storage Services: Utilize cloud-based data storage services like Dropbox, Google Drive, or Microsoft OneDrive to access important files and documents. These services are designed to be redundant and resilient, ensuring that data is still accessible even in the event of a server crash. Confidence Score: 0.8",
-    "Connect to a Remote Network: If the local internet servers are down, try connecting to a remote network or a neighboring city's internet connection. Many organizations have multiple internet connections to ensure uninterrupted access to the internet. Confidence Score: 0.7",
-    "Use a Satellite Internet Connection: In remote areas or emergency situations, a satellite internet connection can provide an alternative way to access the internet. Satellite internet connections are designed to be more resilient than traditional internet connections and can provide a backup in the event of a server crash. Confidence Score: 0.8",
-    "Utilize Peer-to-Peer Networking: Peer-to-peer (P2P) networking allows users to connect directly with each other without relying on centralized servers. This can be useful in situations where traditional internet connectivity is unavailable. Confidence Score: 0.6",
-    "Use a Portable Hotspot: A portable hotspot device can provide a temporary internet connection in areas where there is no internet access. These devices can be powered by a battery or a solar panel, making them ideal for remote areas or emergency situations. Confidence Score: 0.7"
-]

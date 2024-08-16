@@ -1,7 +1,0 @@
-[
-    "Alternative Data Centers: Utilize secondary data centers located in different geographic locations to ensure continued access to information. These centers can serve as backup servers and provide a fail-safe option in case of a global outage.",
-    "Cloud Storage: Utilize cloud storage services like Dropbox, Google Drive, or Microsoft OneDrive to store important files and access them remotely. This way, even if the internet is down, users can still access their files through the cloud.",
-    "Offline Apps: Install offline versions of essential apps, such as email, messaging, or productivity tools, to continue using them without internet connectivity. These apps can cache data locally, allowing users to access them even when the internet is down.",
-    "Local Networks: Establish a local network using a router and switches to connect devices within a specific area. This can allow for local file sharing, communication, and access to essential information without relying on the internet.",
-    "Paper Records: In extreme cases, resort to using paper records or archives to access important information. This may include printed documents, photographs, or other non-digital sources of information. While not ideal, this option can provide a backup plan in the event of a catastrophic internet outage."
-]
