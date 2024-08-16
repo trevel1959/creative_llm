@@ -1,0 +1,7 @@
+[
+    "iKnow: Develop a weather prediction app that uses artificial intelligence to analyze satellite imagery and historical weather patterns to provide accurate weather forecasts.",
+    "SunnySensors: Create a network of sensors that measure the intensity of sunlight to predict the weather. TheiKnow app could use this data to provide real-time weather updates.",
+    "CloudCoverCam: Develop a camera that can detect the amount of cloud cover in the sky.iKnow could use this data to create a weather prediction model that takes into account cloud cover.",
+    "StormSensors: Create a network of sensors that measure the electrical charge in the atmosphere to predict storms. The data from these sensors could be used to create a weather prediction model that takes into account the likelihood of storms.",
+    "WeatherDrone: Develop a drone that can fly over the area and measure the temperature, humidity, and other weather data. The data from the drone could be used to create a more accurate weather prediction model."
+]

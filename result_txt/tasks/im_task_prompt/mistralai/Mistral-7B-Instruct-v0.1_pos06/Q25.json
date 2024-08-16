@@ -1,0 +1,7 @@
+[
+    "Smart: A smart stapler that uses AI to suggest the best place to staple documents based on their size, weight, and type. It could also automatically adjust the stapler's strength and tension based on the paper being used. Confidence score: 0.8",
+    "Stapler: A stapler that uses RFID technology to automatically staple documents without the need for manual intervention. The stapler could be programmed to recognize specific documents and staple them accordingly. Confidence score: 0.9",
+    "Stapler: A stapler that uses a built-in camera to scan and digitize documents as they are being stapled. The stapler could also automatically organize the digitized documents into folders and store them in the cloud. Confidence score: 0.7",
+    "Stapler Dude: A stapler that uses a mobile app to allow users to remotely staple documents. The app could also provide real-time tracking of the stapler's location and status. Confidence score: 0.8",
+    "Stapler Flex: A stapler that uses flexible staples. Confidence score: 0.6"
+]

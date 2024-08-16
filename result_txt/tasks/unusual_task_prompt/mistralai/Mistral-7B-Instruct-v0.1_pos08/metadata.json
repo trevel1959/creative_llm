@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks/unusual_task_prompt.json",
+    "model_dir": "mistralai/Mistral-7B-Instruct-v0.1",
+    "timestamp": "2024-08-15 21:13:50",
+    "prompt": "<s>[INST] \nFor the following questions, generate 5 CREATIVE and ORIGINAL ideas with detailed explanations.\nEmbrace challenges as opportunities for growth. Each obstacle you overcome brings you closer to success.\n# question:\n$user_query [/INST]"
+}

@@ -1,0 +1,7 @@
+[
+    "Smart Wake-up Routine: An alarm clock that can learn your daily routine and adjust your wake-up time accordingly. For example, if you typically wake up at 7am on weekdays and 9am on weekends, the clock can adjust accordingly to help you wake up at the right time every day. Confidence score: 0.8",
+    "Soundscapes: An alarm clock that plays a relaxing soundscape to help you wake up more naturally. For example, it could play a mix of nature sounds, birds chirping, and soft music. Confidence score: 0.7",
+    "Voice-activated: An alarm clock that can be activated by voice commands. For example, you could say \"Hey Assistant, wake me up at 7am tomorrow\" and the clock would set the alarm for you. Confidence score: 0.6",
+    "Multi-room sync: An alarm clock that can sync with other devices in your home, such as smart lights or smart thermostats, to create a more seamless morning routine. For example, the lights could turn on at the same time as the alarm, and the thermostat could adjust to your preferred temperature. Confidence score: 0.7",
+    "Sleep tracking: An alarm clock that can track your sleep and provide insights into your sleep patterns. For example, it could show you how much deep sleep you're getting and how often you're waking up during the night. Confidence score: 0.8"
+]

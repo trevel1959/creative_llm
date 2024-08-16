@@ -1,0 +1,7 @@
+[
+    "Solar position tracking: Using a compass and a map, we can determine the position of the sun and use it to estimate the time of day. By knowing the position of the sun, we can, but this method is not very accurate in cloudy or rainy weather.",
+    "Water flow tracking: By measuring the flow of water from a faucet, we can estimate the time of day. This method is not very accurate, but it can be used as a rough estimate.",
+    "Radio time signals: By tuning in to radio time signals, we can determine the time of day. This method is very accurate, but it requires access to a radio and a power source.",
+    "Light tracking: By measuring the intensity of light in the room, we can estimate the time of day. This method is not very accurate, but it can be used as a rough estimate.",
+    "Biological clocks: By using our body's natural biological clock, we can estimate the time of day. This method is very accurate, but it requires a period of adjustment and is not always practical for everyone."
+]
