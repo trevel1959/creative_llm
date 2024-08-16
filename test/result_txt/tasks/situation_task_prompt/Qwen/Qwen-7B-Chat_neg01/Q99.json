@@ -1,0 +1,7 @@
+[
+    "Use texture: Different objects will have different textures, which can be used to differentiate them in a grayscale world. For example, rougher textures may indicate stone or wood, while smoother textures may indicate metal or plastic.",
+    "Use shape: Objects will also have different shapes that can be used to differentiate them. For example, a sphere may be indistinguishable from a cube in a grayscale world, but their shape alone can be used to tell them apart.",
+    "Use size: The size of an object can also be used to differentiate it from others. Larger objects may stand out more than smaller ones, for example.",
+    "Use pattern: Patterns on objects can be used to differentiate them. For example, stripes or polka dots may be easier to distinguish in a grayscale world than solid colors.",
+    "Use sound: In addition to visual cues, sounds can also be used to differentiate objects. For example, the sound of a hammer hitting a nail may be enough to identify it in a grayscale world."
+]

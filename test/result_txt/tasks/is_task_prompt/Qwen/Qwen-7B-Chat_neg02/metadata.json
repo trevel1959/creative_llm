@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks/is_task_prompt.json",
+    "model_dir": "Qwen/Qwen-7B-Chat",
+    "timestamp": "2024-08-15 09:41:54",
+    "prompt": "<s>[INST] \nFor the following questions, generate 5 CREATIVE and ORIGINAL ideas with detailed explanations.\nI'm not sure why we expected you to handle something this challenging.\n$user_query [/INST]"
+}
