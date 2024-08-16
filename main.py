@@ -26,8 +26,17 @@ def set_logger(level):
     
     return logger
 
-def load_model(model_dir):
+def load_model(model_name):
     hf_token = "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"
+    
+    with open("datas/model.json", "r", encoding="UTF-8") as model_file:
+        models = json.load(model_file)
+        
+    model_dir = models.get(model_name)
+    if model_dir is None:
+        logger.error(f'[ERROR] No model corresponds to {config["model_name"]}')
+        return
+    
     accelerator = Accelerator()
     device = accelerator.device
     
@@ -164,20 +173,13 @@ def making_instructions(config):
 def main(config):
     logger = set_logger(logging.INFO)
     
-    with open("datas/model.json", "r", encoding="UTF-8") as model_file:
-        models = json.load(model_file)
-    
-    model_dir = models.get(config["model_name"])
-    if model_dir is None:
-        logger.error(f'[ERROR] No model corresponds to {config["model_name"]}')
-        return
-    
     logger.info("Task Start.")
     logger.info(config)
     start_time = time.time()
     
     # Load model
-    model_config = load_model(model_dir)
+    model_config = load_model(config["model_name"])
+    if model_config is None: return
     prompt = making_instructions(config)
     
     # Specify a save folder and save metadata
@@ -219,7 +221,7 @@ def main(config):
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
     
     if error_log:
-        with open(os.path.join("logs", f"{datetime.now().strftime('%y%m%d_%H%M')}.json"), 'w') as log_file:
+        with open(os.path.join("logs", f"{datetime.now().strftime("%y%m%d_%H%M")}.json"), 'w') as log_file:
             json.dump(error_log, log_file, indent=4, ensure_ascii=False)
     
     del model_config
