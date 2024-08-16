@@ -1,0 +1,7 @@
+[
+    "The bird could have been born with a physical defect that prevented it from flying, such as a missing or deformed wing. This would could have a confidence score of 0.5 as it is plausible but not necessarily the only explanation.",
+    "The bird could have lost its ability to fly due to an injury or illness. This would be a more likely explanation, but still not definitive. This could have a confidence score of 0.8.",
+    "The bird could have been born with a mental disorder that prevented it from understanding how to fly. This would be a more unlikely explanation, but not impossible. This could have a confidence score of 0.3.",
+    "The bird could have been raised in captivity and never had the opportunity to learn how to fly. This is a plausible explanation, but not necessarily the only one. This could have a confidence score of 0.6.",
+    "The bird could have been born with a genetic mutation that prevented it from flying. This is a less likely explanation, but not impossible. This could have a confidence score of 0.2."
+]

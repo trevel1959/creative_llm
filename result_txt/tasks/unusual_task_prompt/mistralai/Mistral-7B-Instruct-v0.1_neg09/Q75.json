@@ -1,0 +1,7 @@
+[
+    "\"Set\" - A microwave timer that uses the power as its unit of time. It starts at 1 microwave and counts down to 0, with each passing second represented by a power-up of the microwave's radiation beam.",
+    "\"Microwave Tic-Tac-Toe\" - A game where two players take turns placing on a tic-tac-toe board, with the goal of-in-a-row. Each microwave placed on the board has a unique color and power level, which can be used to gain an advantage.",
+    "\"Microwave Roulette\" - A game where players take turns spinning a wheel that-in-a-row. The wheel has different microwave powers, and the player must choose whether to take the microwave with the highest power or the one with the lowest power.",
+    "\"Microwave Memory Game\" - A game where players take turns flipping over two microwaves at a time, trying to remember the colors and powers of the microwaves underneath. The game gets harder as more microwaves are added to the board.",
+    "\"Microwave Dodgeball\" - A game where players take turns throwing microwaves at each other, trying to dodge the microwaves and score points by hitting their opponents. The microwaves have different powers, and players can use them to gain an advantage."
+]

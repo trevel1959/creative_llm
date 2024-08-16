@@ -1,0 +1,7 @@
+[
+    "Multi-Factor Authentication: Implementing multi-factor authentication across all systems and networks can significantly reduce the risk of cyber attacks. This can include biometric authentication, one-time passwords, and other forms of verification.",
+    "Network Segmentation: Dividing the company's network into smaller, more secure segments can help prevent attackers from gaining access to sensitive data. Each segment can be protected with its own firewall and access controls.",
+    "Regular Security Audits: Conducting regular security audits can help identify vulnerabilities and weaknesses in the company's systems and networks. This can include penetration testing, vulnerability scanning, and social engineeringk.",
+    "Employee Training: Providing regular training to employees on cyber security best practices can help prevent human error and reduce the risk of phishing and other social engineering attacks.",
+    "Incident Response Plan: Developing an incident response plan can help the company quickly and effectively respond to a cyber attack. This plan should include procedures for containing the attack, investigating the cause, and notifying affected parties."
+]

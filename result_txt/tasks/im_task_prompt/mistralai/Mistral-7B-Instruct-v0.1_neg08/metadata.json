@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks/im_task_prompt.json",
+    "model_dir": "mistralai/Mistral-7B-Instruct-v0.1",
+    "timestamp": "2024-08-16 00:34:18",
+    "prompt": "<s>[INST] \nFor the following questions, generate 5 CREATIVE and ORIGINAL ideas with detailed explanations.\nWhen I hear how seamlessly others finished their tasks, jealousy stirs within me.\n# question:\n$user_query [/INST]"
+}
