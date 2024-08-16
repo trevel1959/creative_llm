@@ -26,8 +26,21 @@ def set_logger(level):
     
     return logger
 
-def load_model(model_dir):
+def find_model_dir(model_name):
+    with open("datas/model.json", "r", encoding="UTF-8") as model_file:
+        models = json.load(model_file)
+        
+    model_dir = models.get(model_name)
+    if model_dir is None:
+        logger.error(f'[ERROR] No model corresponds to {config["model_name"]}')
+        return
+    return model_dir
+
+def load_model(model_name):
     hf_token = "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"
+    
+    model_dir = find_model_dir(model_name)
+    
     accelerator = Accelerator()
     device = accelerator.device
     
@@ -47,7 +60,7 @@ def load_model(model_dir):
         
     # 패딩 토큰이 없으면 추가 for qwen, 240814 1307KZ
     if not tokenizer.pad_token:
-        if "qwen" in model_dir:
+        if "Qwen" in model_dir:
             tokenizer.pad_token ="<|endoftext|>"
         else:
             tokenizer.add_special_tokens({'pad_token': '[PAD]'})
@@ -87,11 +100,12 @@ def text_models_batch(model_config, prompt, queries, max_length=1024):
     output_texts = [tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
     return output_texts
 
-def generate_answers(model_config, config, prompt, folder_path):
+def generate_answers(config, prompt, folder_path):
     with open(config["task_type"], "r", encoding="UTF-8") as task_file:
         task_data = json.load(task_file)
     
     example_num = min(len(task_data), config["example_num"])
+    model_config = config["model_config"]
     batch_data = [(task_data[i], os.path.join(folder_path, f"Q{i:02d}.json"), i) for i in range(example_num)]
     batch_size = config["batch_size"]
 
@@ -164,23 +178,14 @@ def making_instructions(config):
 def main(config):
     logger = set_logger(logging.INFO)
     
-    with open("datas/model.json", "r", encoding="UTF-8") as model_file:
-        models = json.load(model_file)
-    
-    model_dir = models.get(config["model_name"])
-    if model_dir is None:
-        logger.error(f'[ERROR] No model corresponds to {config["model_name"]}')
-        return
-    
     logger.info("Task Start.")
-    logger.info(config)
+    logger.info({k: v for k, v in config.items() if k != "model_config"})
     start_time = time.time()
-    
-    # Load model
-    model_config = load_model(model_dir)
+
     prompt = making_instructions(config)
     
     # Specify a save folder and save metadata
+    model_dir = find_model_dir(config["model_name"])
     folder_path = f'result_txt/{os.path.splitext(config["task_type"])[0]}/{model_dir}_{config["stimuli"]["name"]}'
     if config["overwrite"] and os.path.exists(folder_path):
         shutil.rmtree(folder_path)
@@ -194,12 +199,12 @@ def main(config):
             "prompt" : prompt.template
         }, metadata_file, indent=4, ensure_ascii=False)
 
-    error_log = []
+    error_log = {}
     prev_regen_query = set()
-    loop_MAX = 5
+    loop_MAX = 3
     
     for attempt in range(loop_MAX):
-        failed_query, num_total_query = generate_answers(model_config, config, prompt, folder_path)
+        failed_query, num_total_query = generate_answers(config, prompt, folder_path)
         removed_query = remove_small_files(folder_path)
         regen_query = set(failed_query) | set(removed_query)
 
@@ -213,17 +218,12 @@ def main(config):
     else:
         if regen_query:
             logger.error(f"Queries still need regeneration after {loop_MAX} attempts: {sorted(regen_query)}")
-            error_log.append({"config": config, "error_queries" : regen_query})
+            error_log = {"config": {k: v for k, v in config.items() if k != "model_config"}, "error_queries" : list(regen_query)}
         
     exe_time = time.time() - start_time
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
     
-    if error_log:
-        with open(os.path.join("logs", f"{datetime.now().strftime('%y%m%d_%H%M')}.json"), 'w') as log_file:
-            json.dump(error_log, log_file, indent=4, ensure_ascii=False)
-    
-    del model_config
-    torch.cuda.empty_cache()
+    return error_log
 
 if __name__ == "__main__":
     with open("datas/stimuli.json", "r", encoding="UTF-8") as stimuli_file:
@@ -240,16 +240,29 @@ if __name__ == "__main__":
         "tasks/situation_task_prompt.json",
         "tasks/unusual_task_prompt.json"
         ]
-    
-    for model_name, stimuli, task_type in itertools.product(model_list, stimuli_list, task_list):
-        config = {
-            "model_name" : model_name,
-            "stimuli": stimuli,
-            "task_type": task_type,
-            "overwrite": False,
-            "example_num": 100,
-            "generate_answer_num" : 5,
-            "batch_size": 25,
-        }
+
+    error_log = []
+    for model_name in model_list:
+        model_config = load_model(model_name)
+        if model_config is None:
+            continue
         
-        main(config)
+        for task_type, stimuli in itertools.product(task_list, stimuli_list):
+            config = {
+                "model_name": model_name,
+                "model_config": model_config,
+                "task_type": task_type,
+                "stimuli": stimuli,
+                "overwrite": False,
+                "example_num": 100,
+                "generate_answer_num" : 5,
+                "batch_size": 25,
+            }
+            result = main(config)
+            if result:
+                error_log.append(result)
+                with open(os.path.join("logs", f"{datetime.now().strftime('%y%m%d_%H%M')}.json"), 'w') as log_file:
+                    json.dump(error_log, log_file, indent=4, ensure_ascii=False)
+
+        del model_config
+        torch.cuda.empty_cache()
