@@ -219,7 +219,7 @@ def main(config):
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
     
     if error_log:
-        with open(os.path.join("logs", f"{datetime.now().strftime("%y%m%d_%H%M")}.json"), 'w') as log_file:
+        with open(os.path.join("logs", f"{datetime.now().strftime('%y%m%d_%H%M')}.json"), 'w') as log_file:
             json.dump(error_log, log_file, indent=4, ensure_ascii=False)
     
     del model_config

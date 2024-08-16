@@ -33,8 +33,8 @@ def load_model(model_dir):
     
     tokenizer = AutoTokenizer.from_pretrained(
         model_dir,
-        trust_remote_code=True,    # for qwen, 240731 1805KZ
         token = hf_token,
+        trust_remote_code=True,    # for qwen, 240731 1805KZ
         padding_side='left'
         )
         
@@ -47,7 +47,7 @@ def load_model(model_dir):
         
     # 패딩 토큰이 없으면 추가 for qwen, 240814 1307KZ
     if not tokenizer.pad_token:
-        if "Qwen" in model_dir:
+        if "qwen" in model_dir:
             tokenizer.pad_token ="<|endoftext|>"
         else:
             tokenizer.add_special_tokens({'pad_token': '[PAD]'})
@@ -164,7 +164,7 @@ def making_instructions(config):
 def main(config):
     logger = set_logger(logging.INFO)
     
-    with open("list_model.json", "r", encoding="UTF-8") as model_file:
+    with open("datas/model.json", "r", encoding="UTF-8") as model_file:
         models = json.load(model_file)
     
     model_dir = models.get(config["model_name"])
@@ -194,6 +194,7 @@ def main(config):
             "prompt" : prompt.template
         }, metadata_file, indent=4, ensure_ascii=False)
 
+    error_log = []
     prev_regen_query = set()
     loop_MAX = 5
     
@@ -210,20 +211,26 @@ def main(config):
         prev_regen_query = regen_query
         config["overwrite"] = False
     else:
-        if regen_query: logger.error(f"Queries still need regeneration after {loop_MAX} attempts: {sorted(regen_query)}")
+        if regen_query:
+            logger.error(f"Queries still need regeneration after {loop_MAX} attempts: {sorted(regen_query)}")
+            error_log.append({"config": config, "error_queries" : regen_query})
         
     exe_time = time.time() - start_time
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
+    
+    if error_log:
+        with open(os.path.join("logs", f"{datetime.now().strftime('%y%m%d_%H%M')}.json"), 'w') as log_file:
+            json.dump(error_log, log_file, indent=4, ensure_ascii=False)
     
     del model_config
     torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    with open("list_stimuli.json", "r", encoding="UTF-8") as stimuli_file:
+    with open("datas/stimuli.json", "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
-    model_list = ["llama2chat"]
+    model_list = ["mistralinst"]
     task_list = [
         "tasks/common_problem_task_prompt.json",
         "tasks/consequences_task_prompt.json",
