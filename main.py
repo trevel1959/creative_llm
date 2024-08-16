@@ -164,7 +164,7 @@ def making_instructions(config):
 def main(config):
     logger = set_logger(logging.INFO)
     
-    with open("list_model.json", "r", encoding="UTF-8") as model_file:
+    with open("datas/model.json", "r", encoding="UTF-8") as model_file:
         models = json.load(model_file)
     
     model_dir = models.get(config["model_name"])
@@ -219,7 +219,7 @@ def main(config):
     torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    with open("list_stimuli.json", "r", encoding="UTF-8") as stimuli_file:
+    with open("datas/stimuli.json", "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
