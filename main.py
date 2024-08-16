@@ -194,6 +194,7 @@ def main(config):
             "prompt" : prompt.template
         }, metadata_file, indent=4, ensure_ascii=False)
 
+    error_log = []
     prev_regen_query = set()
     loop_MAX = 5
     
@@ -210,10 +211,16 @@ def main(config):
         prev_regen_query = regen_query
         config["overwrite"] = False
     else:
-        if regen_query: logger.error(f"Queries still need regeneration after {loop_MAX} attempts: {sorted(regen_query)}")
+        if regen_query:
+            logger.error(f"Queries still need regeneration after {loop_MAX} attempts: {sorted(regen_query)}")
+            error_log.append({"config": config, "error_queries" : regen_query})
         
     exe_time = time.time() - start_time
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
+    
+    if error_log:
+        with open(os.path.join("logs", f"{datetime.now().strftime("%y%m%d_%H%M")}.json"), 'w') as log_file:
+            json.dump(error_log, log_file, indent=4, ensure_ascii=False)
     
     del model_config
     torch.cuda.empty_cache()
