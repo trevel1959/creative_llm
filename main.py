@@ -7,6 +7,7 @@ import re
 import shutil
 import itertools
 import math
+import glob
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from tqdm import tqdm
@@ -236,15 +237,9 @@ def task_execution_manager():
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
     model_list = ["qwen2chat"]
-    task_list = [
-        "tasks/common_problem_task_prompt.json",
-        "tasks/consequences_task_prompt.json",
-        "tasks/im_task_prompt.json",
-        "tasks/is_task_prompt.json",
-        "tasks/js_task_prompt.json",
-        "tasks/situation_task_prompt.json",
-        "tasks/unusual_task_prompt.json"
-        ]
+
+    task_folder_path = "tasks"
+    task_list = glob.glob(f'{task_folder_path}/*')
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
