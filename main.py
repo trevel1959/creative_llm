@@ -102,7 +102,10 @@ def text_models_batch(model_config, prompt, queries, max_length=1024):
 
 def make_and_save_answers(config, prompt, folder_path):
     with open(config["task_type"], "r", encoding="UTF-8") as task_file:
-        task_data = json.load(task_file)
+        task_all_data = json.load(task_file)
+    
+    task_prompt = task_all_data["task_prompt"]
+    task_data = task_all_data["task_list"]
     
     # divide task prompt and data here 240818 0134KZ
 
@@ -120,7 +123,7 @@ def make_and_save_answers(config, prompt, folder_path):
             batch = batch_data[i:i + batch_size]
             batch_queries, batch_file_paths, batch_indices = zip(*batch)
 
-            inf_results = text_models_batch(model_config, prompt, batch_queries)
+            inf_results = text_models_batch(model_config, prompt + task_prompt, batch_queries)
             parsed_strs = [parsing_text(result) for result in inf_results]
                     
             for parsed_str, file_path, index in zip(parsed_strs, batch_file_paths, batch_indices):
