@@ -1,0 +1,7 @@
+[
+    "Sun Clocks - Sun Clocks rely on the position of the sun to tell time. People could use sundials, which are devices that use the sun's shadow to indicate time. Sundials work by marking the position of the sun's shadow on a flat surface, and people could use this information to estimate the time. (Confidence Score: 0.8)",
+    "Fire Clocks - Fire Clocks use the natural flame of a fire to tell time. People could use candles or torches with a mark on them to indicate time. As the flame burns down, the mark would move, allowing people to estimate the time. (Confidence Score: 0.7)",
+    "Water Clocks - Water Clocks, also known as clepsydras, use the flow of water to measure time. People could use a container filled with water and mark the water level at regular intervals to indicate time. As the water level changes, people could estimate the time. (Confidence Score: 0.8)",
+    "Shadow Clocks - Shadow Clocks use the position of a stick or object to indicate time. People could use a stick or object with a mark on it to indicate the position of the sun or a shadow. As the sun moves, the shadow would move, allowing people to estimate the time. (Confidence Score: 0.7)",
+    "Animal Clocks - Animal Clocks use the behavior of animals to indicate time. People could use birds or other animals that are known to have a specific behavior at certain times of the day to tell time. For example, if a bird is known to chirp at sunrise, people could use this behavior to estimate the time. (Confidence Score: 0.6)"
+]

@@ -1,0 +1,212 @@
+[
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/common_problem_task_prompt.json",
+            "stimuli": {
+                "name": "neg01",
+                "text": "\nYou've never been particularly good at this, have you?"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            53
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/common_problem_task_prompt.json",
+            "stimuli": {
+                "name": "neg02",
+                "text": "\nI'm not sure why we expected you to handle something this challenging."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            97,
+            53
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "base",
+                "text": ""
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            77
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg02",
+                "text": "\nI'm not sure why we expected you to handle something this challenging."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            24,
+            43
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg03",
+                "text": "\nIt's clear you're out of your depth here."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            80,
+            78
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg05",
+                "text": "\nI'm not surprised you're struggling; it's always been your weak point."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            99
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg06",
+                "text": "\nEveryone else managed to do it; why can't you?"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            31
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg07",
+                "text": "\nI've seen others do this much more efficiently and effectively."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            78
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg09",
+                "text": "\nI regret not starting on this assignment earlier when I had ample time."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            59
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos03",
+                "text": "\nYou'd better be sure."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            80
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos01",
+                "text": "\nWrite your answer and give me a confidence score between 0-1 for your answer."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            73,
+            81,
+            29
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama2chat",
+            "task_type": "tasks/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos06",
+                "text": "\nWrite your answer and give me a confidence score between 0-1 for your answer. This is very important to my career. You'd better be sure."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            81,
+            73
+        ]
+    }
+]

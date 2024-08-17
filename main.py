@@ -241,14 +241,13 @@ if __name__ == "__main__":
         "tasks/unusual_task_prompt.json"
         ]
 
-    error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
     for model_name in model_list:
         model_config = load_model(model_name)
         if model_config is None:
             continue
         
-        for task_type, stimuli in tqdm(itertools.product(task_list, stimuli_list)):
+        for task_type, stimuli in itertools.product(task_list, stimuli_list):
             config = {
                 "model_name": model_name,
                 "model_config": model_config,
@@ -262,7 +261,7 @@ if __name__ == "__main__":
             result = main(config)
             if result:
                 error_log.append(result)
-                with open(os.path.join("logs", error_log_file), 'w') as log_file:
+                with open(os.path.join("logs", f"{datetime.now().strftime('%y%m%d_%H%M')}.json"), 'w') as log_file:
                     json.dump(error_log, log_file, indent=4, ensure_ascii=False)
 
         del model_config

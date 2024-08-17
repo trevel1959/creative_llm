@@ -1,7 +1,5 @@
 apt-get update
-apt install git
-pip install --upgrade pip
-pip install -r requirements.txt
-
-git pull origin main
-python main.py
+apt-get install git openssh-client -y
+ssh-keygen -t ed25519 -C “jrjh0415@gmail.com”
+eval "$(ssh-agent -s)"
+cat /root/.ssh/id_ed25519.pub

@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks/unusual_task_prompt.json",
+    "model_dir": "meta-llama/Llama-2-7b-chat-hf",
+    "timestamp": "2024-08-16 17:21:43",
+    "prompt": "<s>[INST] <<SYS>>\nFor the following questions, generate 5 CREATIVE and ORIGINAL ideas with detailed explanations.\nWhen I hear how seamlessly others finished their tasks, jealousy stirs within me.\n<</SYS>>\n\n$user_query [/INST]"
+}

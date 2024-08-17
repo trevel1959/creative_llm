@@ -201,7 +201,7 @@ def main(config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 3
+    loop_MAX = 5
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = generate_answers(config, prompt, folder_path)
@@ -230,7 +230,7 @@ if __name__ == "__main__":
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
-    model_list = ["mistralinst"]
+    model_list = ["llama2chat"]
     task_list = [
         "tasks/common_problem_task_prompt.json",
         "tasks/consequences_task_prompt.json",
@@ -242,6 +242,7 @@ if __name__ == "__main__":
         ]
 
     error_log = []
+    error_log_file_name = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     for model_name in model_list:
         model_config = load_model(model_name)
         if model_config is None:
@@ -261,7 +262,7 @@ if __name__ == "__main__":
             result = main(config)
             if result:
                 error_log.append(result)
-                with open(os.path.join("logs", f"{datetime.now().strftime('%y%m%d_%H%M')}.json"), 'w') as log_file:
+                with open(os.path.join("logs", error_log_file_name), 'w') as log_file:
                     json.dump(error_log, log_file, indent=4, ensure_ascii=False)
 
         del model_config
