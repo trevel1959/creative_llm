@@ -100,7 +100,7 @@ def text_models_batch(model_config, prompt, queries, max_length=1024):
     output_texts = [tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
     return output_texts
 
-def generate_answers(config, prompt, folder_path):
+def make_and_save_answers(config, prompt, folder_path):
     with open(config["task_type"], "r", encoding="UTF-8") as task_file:
         task_data = json.load(task_file)
     
@@ -175,7 +175,7 @@ def making_instructions(config):
 
     return Template(prompt_temp)
 
-def main(config):
+def process_task(config):
     logger = set_logger(logging.INFO)
     
     logger.info("Task Start.")
@@ -204,7 +204,7 @@ def main(config):
     loop_MAX = 5
     
     for attempt in range(loop_MAX):
-        failed_query, num_total_query = generate_answers(config, prompt, folder_path)
+        failed_query, num_total_query = make_and_save_answers(config, prompt, folder_path)
         removed_query = remove_small_files(folder_path)
         regen_query = set(failed_query) | set(removed_query)
 
@@ -225,7 +225,7 @@ def main(config):
     
     return error_log
 
-if __name__ == "__main__":
+def main():
     with open("datas/stimuli.json", "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
@@ -259,7 +259,7 @@ if __name__ == "__main__":
                 "generate_answer_num" : 5,
                 "batch_size": 25,
             }
-            result = main(config)
+            result = process_task(config)
             if result:
                 error_log.append(result)
                 with open(os.path.join("logs", error_log_file), 'w') as log_file:
@@ -267,3 +267,6 @@ if __name__ == "__main__":
 
         del model_config
         torch.cuda.empty_cache()
+
+if __name__ == "__main__":
+    main()
