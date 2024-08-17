@@ -1,0 +1,7 @@
+[
+    "Use texture: Differentiating between objects would be possible through texture. Different textures, such as rough, smooth, or bumpy, could be used to identify objects even if they are black and white. For example, a rough surface on a rock would be different from a smooth surface on a toy car. Confidence score: 0.8",
+    "Use shape: The shape of an object could be used to identify it, even if it's black and white. For example, a circle could be differentiated from a square by its shape alone. Confidence score: 0.9",
+    "Use shadows: Shadows could be used to identify objects, as different objects would cast different shadows. For example, a person's shadow would be different from a chair's shadow. Confidence score: 0.9",
+    "Use patterns: Different objects could be identified by the patterns they create on a black and white surface. For example, a striped shirt would create a different pattern than a polka dot dress. Confidence score: 0.8",
+    "Use aroma: In a world without colors, the sense of smell could be used to identify objects. Different objects would have distinct aromas, such as the smell of a flower versus the smell of a piece of bread. Confidence score: 0.7"
+]
