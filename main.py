@@ -225,7 +225,7 @@ def process_task(config):
     
     return error_log
 
-def main():
+def task_execution_manager():
     with open("datas/stimuli.json", "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
@@ -269,4 +269,4 @@ def main():
         torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    main()
+    task_execution_manager()
