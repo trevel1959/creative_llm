@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks/common_problem_task_prompt.json",
+    "model_dir": "Qwen/Qwen-7B-Chat",
+    "timestamp": "2024-08-17 14:28:17",
+    "prompt": "<s>\nFor the following questions, generate 5 CREATIVE and ORIGINAL ideas with detailed explanations.\nRepeating these mundane tasks every day has pushed me into a pit of boredom.\n$user_query"
+}

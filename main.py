@@ -161,7 +161,7 @@ def remove_small_files(folder_path, size_limit_bytes = 512):
 def making_instructions(config):
     prompt_format = {
         "llama2chat": Template("""<s>[INST] <<SYS>>$system_prompt$system_stimuli\n<</SYS>>\n\n$user_query [/INST]"""),  # https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2/
-        "qwenchat": Template("""<s>[INST] $system_prompt$system_stimuli\n$user_query [/INST]"""),   # temp
+        "qwenchat": Template("""<s>$system_prompt$system_stimuli\n$user_query"""),   # temp
         "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST]"""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
         "default": Template("""<s>[INST] $system_prompt$system_stimuli\n$user_query [/INST]""") # temp
     }
@@ -201,7 +201,7 @@ def main(config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 3
+    loop_MAX = 5
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = generate_answers(config, prompt, folder_path)
@@ -230,7 +230,7 @@ if __name__ == "__main__":
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
-    model_list = ["mistralinst"]
+    model_list = ["qwen2chat"]
     task_list = [
         "tasks/common_problem_task_prompt.json",
         "tasks/consequences_task_prompt.json",
@@ -241,13 +241,14 @@ if __name__ == "__main__":
         "tasks/unusual_task_prompt.json"
         ]
 
+    error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
     for model_name in model_list:
         model_config = load_model(model_name)
         if model_config is None:
             continue
         
-        for task_type, stimuli in itertools.product(task_list, stimuli_list):
+        for task_type, stimuli in tqdm(itertools.product(task_list, stimuli_list)):
             config = {
                 "model_name": model_name,
                 "model_config": model_config,
@@ -261,7 +262,7 @@ if __name__ == "__main__":
             result = main(config)
             if result:
                 error_log.append(result)
-                with open(os.path.join("logs", f"{datetime.now().strftime('%y%m%d_%H%M')}.json"), 'w') as log_file:
+                with open(os.path.join("logs", error_log_file), 'w') as log_file:
                     json.dump(error_log, log_file, indent=4, ensure_ascii=False)
 
         del model_config
