@@ -104,6 +104,8 @@ def make_and_save_answers(config, prompt, folder_path):
     with open(config["task_type"], "r", encoding="UTF-8") as task_file:
         task_data = json.load(task_file)
     
+    # divide task prompt and data here 240818 0134KZ
+
     example_num = min(len(task_data), config["example_num"])
     model_config = config["model_config"]
     batch_data = [(task_data[i], os.path.join(folder_path, f"Q{i:02d}.json"), i) for i in range(example_num)]
