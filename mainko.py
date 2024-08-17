@@ -171,7 +171,7 @@ def making_instructions(config):
         "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST]"""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
         "default": Template("""<s>[INST] $system_prompt$system_stimuli\n$user_query [/INST]""") # temp
     }
-    system_prompt = f"""\nFor the following questions, generate {config["generate_answer_num"]} CREATIVE and ORIGINAL ideas with detailed explanations."""
+    system_prompt_ko = f"""\n주어진 질문을 따라, {config["generate_answer_num"]}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요."""
     system_stimuli = config["stimuli"]["text"]
     
     prompt_temp = prompt_format.get(config["model_name"], prompt_format["default"]).safe_substitute(
@@ -232,13 +232,13 @@ def process_task(config):
     return error_log
 
 def task_execution_manager():
-    with open("datas/stimuli.json", "r", encoding="UTF-8") as stimuli_file:
+    with open("datas/stimuli_ko.json", "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
     model_list = ["qwen2chat"]
 
-    task_folder_path = "tasks"
+    task_folder_path = "tasks_ko"
     task_list = glob.glob(f'{task_folder_path}/*')
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
