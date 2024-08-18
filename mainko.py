@@ -257,7 +257,7 @@ def task_execution_manager():
                 "overwrite": False,
                 "example_num": 100,
                 "generate_answer_num" : 5,
-                "batch_size": 34,
+                "batch_size": 10,
             }
             result = process_task(config)
             if result:

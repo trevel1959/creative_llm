@@ -236,7 +236,7 @@ def task_execution_manager():
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
-    model_list = ["qwen2chat"]
+    model_list = ["llama3.1inst"]
 
     task_folder_path = "tasks"
     task_list = glob.glob(f'{task_folder_path}/*')
