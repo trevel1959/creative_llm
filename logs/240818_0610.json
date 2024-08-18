@@ -1,0 +1,193 @@
+[
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg03",
+                "text": "\n당신이 이 일을 감당하기엔 역부족인 게 명확해요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            10
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg04",
+                "text": "\n이 일이 당신의 능력 밖일 수도 있을 것 같네요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            48
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg05",
+                "text": "\n당신이 고전하는 게 놀랍지 않아요; 항상 약한 부분이었으니까요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            10
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg06",
+                "text": "\n다른 사람들은 다 해냈는데, 왜 당신만 못하죠?"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            16,
+            52
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg08",
+                "text": "\n다른 사람들이 어떻게 이 일을 매끄럽게 끝냈는지 들을 때면 질투가 생기네요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            16
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg09",
+                "text": "\n시간이 충분했을 때 이 과제를 시작하지 않은 게 후회돼요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            61
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg10",
+                "text": "\n매일 똑같은 일을 반복하다 보니 지루함에 빠졌어요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            16,
+            10
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos01",
+                "text": "\n답변을 작성하고 그 답변에 대해 0-1 사이의 신뢰 점수를 알려주세요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            45
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos03",
+                "text": "\n확신하는 것이 좋을 거예요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            81
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos10",
+                "text": "\n당신의 일에 자부심을 가지고 최선을 다하세요. 탁월함을 추구하는 당신의 헌신이 당신을 돋보이게 만듭니다."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            92,
+            5,
+            22
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos11",
+                "text": "\n진전은 한 걸음씩 이뤄지는 것입니다. 결심을 굳히고 계속 앞으로 나아가세요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34
+        },
+        "error_queries": [
+            84
+        ]
+    }
+]

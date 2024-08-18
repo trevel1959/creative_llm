@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks_ko/situation_task_prompt.json",
+    "model_dir": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+    "timestamp": "2024-08-18 10:13:23",
+    "prompt": "<s>[INST] \n주어진 질문을 따라, 5개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요.\n매일 똑같은 일을 반복하다 보니 지루함에 빠졌어요.\n$user_query [/INST]"
+}
