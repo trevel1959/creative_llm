@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks/is_task_prompt.json",
+    "model_dir": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+    "timestamp": "2024-08-18 05:43:35",
+    "prompt": "<s>[INST] \nFor the following questions, generate 5 CREATIVE and ORIGINAL ideas with detailed explanations.\n$user_query [/INST]"
+}

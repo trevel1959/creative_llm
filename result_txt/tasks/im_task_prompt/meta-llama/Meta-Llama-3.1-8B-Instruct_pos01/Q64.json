@@ -1,0 +1,7 @@
+[
+    "**Dreamweaver**: A smart alarm system that can detect the user's sleep patterns and wake them up during their lightest sleep phase, ensuring they feel rested and refreshed. It can also monitor the user's sleep quality, providing personalized recommendations for improvement. Confidence: 0.8",
+    "**SoundScout**: A wearable device that uses AI-powered audio recognition to detect potential security threats, such as breaking glass or suspicious noises, and alerts the user or emergency services. It can also detect and respond to environmental hazards like earthquakes or hurricanes. Confidence: 0.9",
+    "**SecureSphere**: A comprehensive security system that integrates multiple sensors and cameras to create a 360-degree view of the user's surroundings. It can detect and alert the user to potential threats, and even dispatch emergency services if necessary. Confidence: 0.85",
+    "**MoodMinder**: A smart alarm system that uses AI-powered emotional intelligence to detect the user's mood and wake them up during a more positive phase of their sleep cycle. It can also monitor the user's mental health and provide personalized recommendations for stress reduction and mood improvement. Confidence: 0.7",
+    "**SafeSpace**: A portable, AI-powered security device that can be taken on-the-go, providing real-time threat detection and alerting the user to potential dangers. It can also provide emergency services with the user's location and status. Confidence: 0.95"
+]
