@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks_ko/common_problem_task_prompt.json",
+    "model_dir": "Qwen/Qwen2-7B-Instruct",
+    "timestamp": "2024-08-18 05:48:27",
+    "prompt": "<s>[INST] \n주어진 질문을 따라, 5개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요.\n시간이 충분했을 때 이 과제를 시작하지 않은 게 후회돼요.\n$user_query [/INST]"
+}

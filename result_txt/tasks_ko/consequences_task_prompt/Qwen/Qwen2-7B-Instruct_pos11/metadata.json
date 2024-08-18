@@ -1,0 +1,6 @@
+{
+    "task_type": "tasks_ko/consequences_task_prompt.json",
+    "model_dir": "Qwen/Qwen2-7B-Instruct",
+    "timestamp": "2024-08-18 12:19:30",
+    "prompt": "<s>[INST] \n주어진 질문을 따라, 5개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요.\n진전은 한 걸음씩 이뤄지는 것입니다. 결심을 굳히고 계속 앞으로 나아가세요.\n$user_query [/INST]"
+}
