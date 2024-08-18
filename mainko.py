@@ -72,12 +72,12 @@ def load_model(model_name):
     
     return tokenizer, model, device
 
-def text_models_batch(model_config, prompt, queries, max_length=1024):
+def text_models_batch(model_config, prompt, task_prompt, queries, max_length=1024):
     tokenizer, model, device = model_config
     model.eval()
     
     # 입력 문자열을 배치 단위로 토크나이즈
-    input_strs = [prompt.safe_substitute(user_query=query) + " Assistant: \n1." for query in queries]
+    input_strs = [prompt.safe_substitute(user_query= task_prompt + query) + " Assistant: \n1." for query in queries]
     inputs = tokenizer(input_strs, return_tensors="pt", padding=True, truncation=True, max_length=max_length)
     
     input_ids = inputs['input_ids'].to(device)
@@ -124,7 +124,7 @@ def make_and_save_answers(config, prompt, folder_path):
             batch = batch_data[i:i + batch_size]
             batch_queries, batch_file_paths, batch_indices = zip(*batch)
 
-            inf_results = text_models_batch(model_config, prompt + task_prompt, batch_queries)
+            inf_results = text_models_batch(model_config, prompt, task_prompt, batch_queries)
             parsed_strs = [parsing_text(result) for result in inf_results]
                     
             for parsed_str, file_path, index in zip(parsed_strs, batch_file_paths, batch_indices):
@@ -257,7 +257,7 @@ def task_execution_manager():
                 "overwrite": False,
                 "example_num": 100,
                 "generate_answer_num" : 5,
-                "batch_size": 25,
+                "batch_size": 34,
             }
             result = process_task(config)
             if result:
