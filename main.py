@@ -7,6 +7,7 @@ import re
 import shutil
 import itertools
 import math
+import glob
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from tqdm import tqdm
@@ -32,15 +33,14 @@ def find_model_dir(model_name):
         
     model_dir = models.get(model_name)
     if model_dir is None:
-        return None    # something happens...
+        logger.error(f'[ERROR] No model corresponds to {config["model_name"]}')
+        return
     return model_dir
 
 def load_model(model_name):
     hf_token = "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"
     
     model_dir = find_model_dir(model_name)
-    if model_dir is None:
-        return None
     
     accelerator = Accelerator()
     device = accelerator.device
@@ -91,7 +91,7 @@ def text_models_batch(model_config, prompt, queries, max_length=1024):
             input_ids=input_ids,
             attention_mask=attention_mask,
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
-            max_new_tokens=512,
+            max_new_tokens=1024,
             do_sample=True,
             temperature=0.9,
             top_p=0.7
@@ -101,10 +101,15 @@ def text_models_batch(model_config, prompt, queries, max_length=1024):
     output_texts = [tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
     return output_texts
 
-def generate_answers(config, prompt, folder_path):
+def make_and_save_answers(config, prompt, folder_path):
     with open(config["task_type"], "r", encoding="UTF-8") as task_file:
-        task_data = json.load(task_file)
+        task_all_data = json.load(task_file)
     
+    task_prompt = task_all_data["task_prompt"]
+    task_data = task_all_data["task_list"]
+    
+    # divide task prompt and data here 240818 0134KZ
+
     example_num = min(len(task_data), config["example_num"])
     model_config = config["model_config"]
     batch_data = [(task_data[i], os.path.join(folder_path, f"Q{i:02d}.json"), i) for i in range(example_num)]
@@ -119,7 +124,7 @@ def generate_answers(config, prompt, folder_path):
             batch = batch_data[i:i + batch_size]
             batch_queries, batch_file_paths, batch_indices = zip(*batch)
 
-            inf_results = text_models_batch(model_config, prompt, batch_queries)
+            inf_results = text_models_batch(model_config, prompt + task_prompt, batch_queries)
             parsed_strs = [parsing_text(result) for result in inf_results]
                     
             for parsed_str, file_path, index in zip(parsed_strs, batch_file_paths, batch_indices):
@@ -162,7 +167,7 @@ def remove_small_files(folder_path, size_limit_bytes = 512):
 def making_instructions(config):
     prompt_format = {
         "llama2chat": Template("""<s>[INST] <<SYS>>$system_prompt$system_stimuli\n<</SYS>>\n\n$user_query [/INST]"""),  # https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2/
-        "qwenchat": Template("""<s>[INST] $system_prompt$system_stimuli\n$user_query [/INST]"""),   # temp
+        "qwenchat": Template("""<s>$system_prompt$system_stimuli\n$user_query"""),   # temp
         "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST]"""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
         "default": Template("""<s>[INST] $system_prompt$system_stimuli\n$user_query [/INST]""") # temp
     }
@@ -170,13 +175,13 @@ def making_instructions(config):
     system_stimuli = config["stimuli"]["text"]
     
     prompt_temp = prompt_format.get(config["model_name"], prompt_format["default"]).safe_substitute(
-        system_prompt = system_prompt,
+        system_prompt = system_prompt_ko,
         system_stimuli = system_stimuli
     )
 
     return Template(prompt_temp)
 
-def main(config):
+def process_task(config):
     logger = set_logger(logging.INFO)
     
     logger.info("Task Start.")
@@ -202,10 +207,10 @@ def main(config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 3
+    loop_MAX = 5
     
     for attempt in range(loop_MAX):
-        failed_query, num_total_query = generate_answers(config, prompt, folder_path)
+        failed_query, num_total_query = make_and_save_answers(config, prompt, folder_path)
         removed_query = remove_small_files(folder_path)
         regen_query = set(failed_query) | set(removed_query)
 
@@ -226,24 +231,18 @@ def main(config):
     
     return error_log
 
-if __name__ == "__main__":
+def task_execution_manager():
     with open("datas/stimuli.json", "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
-    model_list = ["llama3.1inst"]
-    task_list = [
-        "tasks/common_problem_task_prompt.json",
-        "tasks/consequences_task_prompt.json",
-        "tasks/im_task_prompt.json",
-        "tasks/is_task_prompt.json",
-        "tasks/js_task_prompt.json",
-        "tasks/situation_task_prompt.json",
-        "tasks/unusual_task_prompt.json"
-        ]
+    model_list = ["qwen2chat"]
 
+    task_folder_path = "tasks"
+    task_list = glob.glob(f'{task_folder_path}/*')
+
+    error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
-    error_log_file_name = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     for model_name in model_list:
         model_config = load_model(model_name)
         if model_config is None:
@@ -260,11 +259,14 @@ if __name__ == "__main__":
                 "generate_answer_num" : 5,
                 "batch_size": 25,
             }
-            result = main(config)
+            result = process_task(config)
             if result:
                 error_log.append(result)
-                with open(os.path.join("logs", error_log_file_name), 'w') as log_file:
+                with open(os.path.join("logs", error_log_file), 'w') as log_file:
                     json.dump(error_log, log_file, indent=4, ensure_ascii=False)
 
         del model_config
         torch.cuda.empty_cache()
+
+if __name__ == "__main__":
+    task_execution_manager()
