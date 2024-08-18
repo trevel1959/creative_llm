@@ -32,14 +32,15 @@ def find_model_dir(model_name):
         
     model_dir = models.get(model_name)
     if model_dir is None:
-        logger.error(f'[ERROR] No model corresponds to {config["model_name"]}')
-        return
+        return None    # something happens...
     return model_dir
 
 def load_model(model_name):
     hf_token = "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"
     
     model_dir = find_model_dir(model_name)
+    if model_dir is None:
+        return None
     
     accelerator = Accelerator()
     device = accelerator.device
@@ -201,7 +202,7 @@ def main(config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 5
+    loop_MAX = 3
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = generate_answers(config, prompt, folder_path)
@@ -230,7 +231,7 @@ if __name__ == "__main__":
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
 
-    model_list = ["llama2chat"]
+    model_list = ["llama3.1inst"]
     task_list = [
         "tasks/common_problem_task_prompt.json",
         "tasks/consequences_task_prompt.json",

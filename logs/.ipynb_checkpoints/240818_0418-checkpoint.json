@@ -1,0 +1,36 @@
+[
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks/common_problem_task_prompt.json",
+            "stimuli": {
+                "name": "pos03",
+                "text": "\nYou'd better be sure."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            93
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks/im_task_prompt.json",
+            "stimuli": {
+                "name": "pos03",
+                "text": "\nYou'd better be sure."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            51
+        ]
+    }
+]

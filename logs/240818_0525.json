@@ -1,0 +1,36 @@
+[
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos02",
+                "text": "\nThis is very important to my career."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            9
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks/unusual_task_prompt.json",
+            "stimuli": {
+                "name": "pos10",
+                "text": "\nTake pride in your work and give it your best. Your commitment to excellence sets you apart."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 25
+        },
+        "error_queries": [
+            76
+        ]
+    }
+]

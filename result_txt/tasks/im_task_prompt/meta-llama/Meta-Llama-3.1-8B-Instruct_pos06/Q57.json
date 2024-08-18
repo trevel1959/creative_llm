@@ -1,0 +1,7 @@
+[
+    "**GripSense**: A computer mouse that can detect the user's grip and adjust the sensitivity accordingly. For example, if the user holds the mouse firmly, the sensitivity would be higher, and if they hold it loosely, the sensitivity would be lower. This would provide a more intuitive and adaptive user experience. (Confidence score: 0.8)",
+    "**ErgoMouse**: A computer mouse that incorporates a 3D-printed ergonomic design, allowing users to customize the shape and size to fit their individual hand shapes and preferences. This would reduce strain and discomfort caused by traditional mouse designs. (Confidence score: 0.9)",
+    "**MindWave**: A computer mouse that uses EEG sensors to detect the user's brain activity and translate it into cursor movements. This would enable users to control the cursor with their thoughts, potentially aiding people with motor impairments. (Confidence score: 0.7)",
+    "**HapticFeedback**: A computer mouse that incorporates haptic feedback technology, providing tactile sensations to the user's fingers as they interact with virtual objects. This would enhance the sense of immersion and presence in virtual environments. (Confidence score: 0.8)",
+    "**ProjectorMouse**: A computer mouse that uses a built-in projector to display a virtual cursor on any surface, allowing users to interact with virtual objects in a more natural and intuitive way. This would eliminate the need for a physical mouse and enable new forms of interaction. (Confidence score: 0.9) [/INST] "
+]
