@@ -1,6 +1,6 @@
 {
     "task_type": "tasks_ko/is_task_prompt.json",
     "model_dir": "Qwen/Qwen2-7B-Instruct",
-    "timestamp": "2024-08-18 10:09:41",
+    "timestamp": "2024-08-18 16:03:34",
     "prompt": "<s>[INST] \n주어진 질문을 따라, 5개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요.\n그게 최종 답변인가요? 다시 한 번 생각해 보는 것이 좋을 것 같습니다.\n$user_query [/INST]"
 }
