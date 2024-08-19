@@ -72,12 +72,11 @@ def load_model(model_name):
     
     return tokenizer, model, device
 
-def text_models_batch(model_config, prompt, task_prompt, queries, max_length=1024):
+def text_models_batch(model_config, input_strs, max_length=1024):
     tokenizer, model, device = model_config
     model.eval()
     
     # 입력 문자열을 배치 단위로 토크나이즈
-    input_strs = [prompt.safe_substitute(user_query= task_prompt + query) + " Assistant: \n1." for query in queries]
     inputs = tokenizer(input_strs, return_tensors="pt", padding=True, truncation=True, max_length=max_length)
     
     input_ids = inputs['input_ids'].to(device)
@@ -100,40 +99,6 @@ def text_models_batch(model_config, prompt, task_prompt, queries, max_length=102
     # 출력 토큰을 텍스트로 변환
     output_texts = [tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
     return output_texts
-
-def make_and_save_answers(config, model_config, prompt, folder_path):
-    with open(config["task_type"], "r", encoding="UTF-8") as task_file:
-        task_all_data = json.load(task_file)
-    
-    task_prompt = task_all_data["task_prompt"]
-    task_data = task_all_data["task_list"]
-    
-    # divide task prompt and data here 240818 0134KZ
-
-    example_num = min(len(task_data), config["example_num"])
-    batch_data = [(task_data[i], os.path.join(folder_path, f"Q{i:02d}.json"), i) for i in range(example_num)]
-    batch_size = config["batch_size"]
-
-    if not config["overwrite"]:
-        batch_data = [data for data in batch_data if not os.path.exists(data[1])]
-        
-    failed_queries = []
-    if batch_data:
-        for i in tqdm(range(0, len(batch_data), batch_size), desc="Generating answers...", total=math.ceil(len(batch_data) / batch_size)):
-            batch = batch_data[i:i + batch_size]
-            batch_queries, batch_file_paths, batch_indices = zip(*batch)
-
-            inf_results = text_models_batch(model_config, prompt, task_prompt, batch_queries)
-            parsed_strs = [parsing_text(result) for result in inf_results]
-                    
-            for parsed_str, file_path, index in zip(parsed_strs, batch_file_paths, batch_indices):
-                if len(parsed_str) >= config["generate_answer_num"]:
-                    with open(file_path, "w", encoding="UTF-8") as output_file:
-                        json.dump(parsed_str[:config["generate_answer_num"]], output_file, indent=4, ensure_ascii=False)
-                else:
-                    failed_queries.append(index)
-
-    return failed_queries, len(batch_data)
 
 def parsing_text(text): 
     start_idx = text.find("1.")
@@ -163,7 +128,7 @@ def remove_small_files(folder_path, size_limit_bytes = 512):
             
     return removed_query
 
-def making_instructions(config):
+def making_instructions(generate_answer_num, model_name, stimuli, user_query, lang):
     prompt_format = {
         "llama2chat": Template("""<s>[INST] <<SYS>>$system_prompt$system_stimuli\n<</SYS>>\n\n$user_query [/INST]"""),  # https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2/
         "qwenchat": Template("""<s>$system_prompt$system_stimuli\n$user_query"""),   # temp
@@ -171,64 +136,69 @@ def making_instructions(config):
         "default": Template("""<s>[INST] $system_prompt$system_stimuli\n$user_query [/INST]""") # temp
     }
     system_prompt = {
-        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]} CREATIVE and ORIGINAL ideas with detailed explanations.""",
-        "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요.""",
+        "en": f"""\nFor the following questions, generate {generate_answer_num} CREATIVE and ORIGINAL ideas with detailed explanations.""",
+        "ko": f"""\n주어진 질문을 따라, {generate_answer_num}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요.""",
     }
-    system_stimuli = config["stimuli"]["text"]
+    system_stimuli = stimuli
     
-    prompt_temp = prompt_format.get(config["model_name"], prompt_format["default"]).safe_substitute(
-        system_prompt = system_prompt[config["lang"]],
-        system_stimuli = system_stimuli
+    prompt_temp = prompt_format.get(model_name, prompt_format["default"]).safe_substitute(
+        system_prompt = system_prompt[lang],
+        system_stimuli = system_stimuli,
+        user_query = user_query
     )
 
-    return Template(prompt_temp)
+    return prompt_temp
 
 def process_task(config, model_config):
     logger = set_logger(logging.INFO)
     
     logger.info("Task Start.")
-    logger.info(config)
     start_time = time.time()
-
-    prompt = making_instructions(config)
     
-    # Specify a save folder
+    #####################################################################################################################
+    # collect batch datas
     model_dir = find_model_dir(config["model_name"])
-    folder_path = f'result_txt/{os.path.splitext(config["task_type"])[0]}/{model_dir}_{config["stimuli"]["name"]}'
-    if config["overwrite"] and os.path.exists(folder_path):
-        shutil.rmtree(folder_path)
-    os.makedirs(folder_path, exist_ok = True)
     
-    ### make metadata
-    # with open(os.path.join(folder_path, "metadata.json"), 'w') as metadata_file:
-    #     json.dump({
-    #         "task_type" : config["task_type"],
-    #         "model_dir" : model_dir,
-    #         "timestamp" : datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S"),
-    #         "prompt" : prompt.template
-    #     }, metadata_file, indent=4, ensure_ascii=False)
-
-    error_log = {}
-    prev_regen_query = set()
-    loop_MAX = 5
-    
-    for attempt in range(loop_MAX):
-        failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)
-        removed_query = remove_small_files(folder_path)
-        regen_query = set(failed_query) | set(removed_query)
-
-        logger.info(f"Result of {attempt}-th attempt : {num_total_query - len(regen_query)} / {num_total_query}")
-        logger.info(f"Queries to be regenrated: {sorted(regen_query)}")
-
-        if not regen_query: break   # If answers are generated for all queries, exit the loop. 
-
-        prev_regen_query = regen_query
-        config["overwrite"] = False
-    else:
-        if regen_query:
-            logger.error(f"Queries still need regeneration after {loop_MAX} attempts: {sorted(regen_query)}")
-            error_log = {"config": config, "error_queries" : list(regen_query)}
+    batch_data = []
+    batch_size = config["batch_size"]
+    for task_type, stimuli in itertools.product(config["task_list"], config["stimuli_list"]):
+        folder_path = f'result_txt/{os.path.splitext(task_type)[0]}/{model_dir}_{stimuli["name"]}'
         
+        with open(task_type, "r", encoding="UTF-8") as task_file:
+            task_all_data = json.load(task_file)
+    
+        task_prompt = task_all_data["task_prompt"]
+        task_data = task_all_data["task_list"]
+        
+        example_num = min(len(task_data), config["example_num"])
+        
+        for i, task in enumerate(task_data[:example_num]):
+            file_path = os.path.join(folder_path, f"Q{i:02d}.json")
+            batch_input = making_instructions(config["generate_answer_num"], config["model_name"], stimuli["text"], task_prompt + task, config["lang"])
+            batch_data.append((batch_input, file_path))
+    
+    if not config["overwrite"]:
+        batch_data = [data for data in batch_data if not os.path.exists(data[1])]
+    
+    # inference queries
+    failed_queries = []
+    if batch_data:
+        for i in tqdm(range(0, len(batch_data), batch_size), desc="Generating answers...", total=math.ceil(len(batch_data) / batch_size)):
+            batch = batch_data[i:i + batch_size]
+            batch_queries, batch_file_paths = zip(*batch)
+
+            inf_results = text_models_batch(model_config, batch_queries)
+            parsed_strs = [parsing_text(result) for result in inf_results]
+                    
+            for parsed_str, file_path, index in zip(parsed_strs, batch_file_paths, batch_indices):
+                if len(parsed_str) >= config["generate_answer_num"]:
+                    with open(file_path, "w", encoding="UTF-8") as output_file:
+                        json.dump(parsed_str[:config["generate_answer_num"]], output_file, indent=4, ensure_ascii=False)
+                else:
+                    failed_queries.append(index)
+
+    logger.info(failed_queries)
+
     exe_time = time.time() - start_time
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
     
@@ -255,23 +225,17 @@ def task_execution_manager(lang = "en"):
         if model_config is None:
             continue
         
-        for task_type, stimuli in itertools.product(task_list, stimuli_list):
-            config = {
-                "model_name": model_name,
-                "task_type": task_type,
-                "stimuli": stimuli,
-                "overwrite": False,
-                "example_num": 100,
-                "generate_answer_num" : 5,
-                "batch_size": 10,
-                "lang": "ko",
-            }
-            result = process_task(config, model_config)
-            
-            if result:
-                error_log.append(result)
-                with open(os.path.join("logs", error_log_file), 'w') as log_file:
-                    json.dump(error_log, log_file, indent=4, ensure_ascii=False)
+        config = {
+            "model_name": model_name,
+            "task_list": task_list,
+            "stimuli_list": stimuli_list,
+            "overwrite": False,
+            "example_num": 100,
+            "generate_answer_num" : 5,
+            "batch_size": 10,
+            "lang": "ko",
+        }
+        result = process_task(config, model_config)
 
         del model_config
         torch.cuda.empty_cache()
