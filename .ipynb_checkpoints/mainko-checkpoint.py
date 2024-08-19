@@ -207,7 +207,7 @@ def process_task(config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 5
+    loop_MAX = 2
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, prompt, folder_path)
