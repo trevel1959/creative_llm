@@ -1,0 +1,53 @@
+[
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg05",
+                "text": "\n당신이 고전하는 게 놀랍지 않아요; 항상 약한 부분이었으니까요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 10
+        },
+        "error_queries": [
+            93
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg06",
+                "text": "\n다른 사람들은 다 해냈는데, 왜 당신만 못하죠?"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 10
+        },
+        "error_queries": [
+            10
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3.1inst",
+            "task_type": "tasks_ko/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg07",
+                "text": "\n다른 사람들은 훨씬 더 효율적이고 효과적으로 해냈던 걸 봤어요."
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 10
+        },
+        "error_queries": [
+            72
+        ]
+    }
+]
