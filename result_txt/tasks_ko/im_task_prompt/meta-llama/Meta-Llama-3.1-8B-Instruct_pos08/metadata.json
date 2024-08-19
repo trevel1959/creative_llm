@@ -1,6 +1,6 @@
 {
     "task_type": "tasks_ko/im_task_prompt.json",
     "model_dir": "meta-llama/Meta-Llama-3.1-8B-Instruct",
-    "timestamp": "2024-08-19 01:06:04",
+    "timestamp": "2024-08-19 01:15:13",
     "prompt": "<s>[INST] \n주어진 질문을 따라, 5개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요.\n도전은 성장의 기회로 받아들이세요. 극복한 장애물마다 성공에 한 걸음 더 가까워집니다.\n$user_query [/INST]"
 }
