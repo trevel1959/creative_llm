@@ -163,6 +163,9 @@ def process_task(config, model_config):
     batch_size = config["batch_size"]
     for task_type, stimuli in itertools.product(config["task_list"], config["stimuli_list"]):
         folder_path = f'result_txt/{os.path.splitext(task_type)[0]}/{model_dir}_{stimuli["name"]}'
+            if config["overwrite"] and os.path.exists(folder_path):
+                shutil.rmtree(folder_path)
+            os.makedirs(folder_path, exist_ok = True)
         
         with open(task_type, "r", encoding="UTF-8") as task_file:
             task_all_data = json.load(task_file)
