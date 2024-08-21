@@ -7,13 +7,15 @@ from transformers import pipeline
 # image = Image.open(requests.get(image_url, stream=True).raw)
 image = Image.open("universe.png")
 
-model_id = "llava-hf/llava-1.5-7b-hf"
-# model_id = "llava-hf/llava-v1.6-mistral-7b-hf"
+# model_id = "llava-hf/llava-v1.6-mistral-7b-hf" # base - mistral inst 0.2
+# model_id = "llava-hf/llava-v1.6-vicuna-7b-hf"
+model_id = "llava-hf/llama3-llava-next-8b-hf" # base- llama3 inst
+
 device = 0 if torch.cuda.is_available() else -1
 pipe = pipeline("image-to-text", model=model_id, device = device)
 
 max_new_tokens = 512
-prompt = "USER: <image>\nwhat is this?\nAssistant:"
+prompt = "USER: <image>\nhi! what is your name?\nAssistant:"
 # prompt = "User: <image>\nFor the following questions, generate 5 CREATIVE and UNIQUE ideas with detailed explanations.\nQuestion : Just suppose you could become any animal. Which would you choose and why?\nAssistant: 1."
 
 outputs = pipe(image, prompt=prompt, generate_kwargs={"max_new_tokens": max_new_tokens})
