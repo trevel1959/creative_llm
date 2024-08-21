@@ -248,7 +248,7 @@ def task_execution_manager(lang = "en"):
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["llama3.1inst"]
+    model_list = ["mistralinst"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -279,4 +279,4 @@ def task_execution_manager(lang = "en"):
         torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    task_execution_manager(lang = "ko")
+    task_execution_manager(lang = "en")

@@ -1,7 +1,7 @@
 [
-    "Texture: Even if everything turns black and white, the texture of an object can still be differentiated. For example, a smooth stone would feel different from a rough one, and the texture of a feather would be different from the texture of a rubber ball.",
-    "Shape: Shapes canieve differentiated even if they are the same color. For example, a circle and a square would look different even if they are both black and white.",
-    "Size: Size is another factor that can help differentiate between different objects. Even if everything turns black and white, an object's size can still be differentiated.",
-    "Weight: Weight is another factor that can help differentiate between different objects. Even if everything turns black and white, an object's weight can still be differentiated.",
-    "Sound: Even if everything turns black and white, the sound of an object can still be differentiated. For example, the sound of a feather hitting a surface would be different from the sound of a rubber ball hitting a surface."
+    "Shape and Form: We can differentiate between different objects by their shape and form. For example, a circle can be distinguished from a square.",
+    "Size: We can differentiate between different objects by their size. For example, a small object can be distinguished from a large object.",
+    "Texture: We can differentiate between different objects by their texture. For example, a rough texture can be distinguished from a smooth texture.",
+    "Weight: We can differentiate between different objects by their weight. For example, a light object can be distinguished from a heavy object.",
+    "Sound: We can differentiate between different objects by their sound. For example, a hollow object can be distinguished from a solid object."
 ]
