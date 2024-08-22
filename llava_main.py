@@ -29,8 +29,13 @@ def load_pipe(model_name):
 def llava_inference_simple(pipe, prompt = "User: hello! \nAssistant:", max_new_tokens = 1024):
     outputs = pipe(
         images = None,
-        prompt=prompt,
-        generate_kwargs={"max_new_tokens": max_new_tokens}
+        prompt = prompt,
+        generate_kwargs = {
+            "max_new_tokens": max_new_tokens,
+            "temperature": 1,
+            "top_p": 1,
+            "top_k": 50
+        }
     )
     return outputs[0]["generated_text"]
 
@@ -60,7 +65,7 @@ def text_models_batch(model_config, prompt, task_prompt, queries, max_length=102
     pipe = model_config
     
     # 입력 문자열을 배치 단위로 토크나이즈
-    input_strs = [prompt.safe_substitute(user_query= task_prompt + query) + " Assistant: \n1." for query in queries]
+    input_strs = [prompt.safe_substitute(user_query= task_prompt + query) + " ASSISTANT: \n1." for query in queries]
     output_texts = []
     for input in input_strs:
         output_texts.append(llava_inference_simple(pipe, input))
@@ -133,10 +138,9 @@ def remove_small_files(folder_path, size_limit_bytes = 1024):
 
 def making_instructions(config):
     prompt_format = {
-        "llama2chat": Template("""<s>[INST] <<SYS>>$system_prompt$system_stimuli\n<</SYS>>\n\n$user_query [/INST]"""),  # https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2/
-        "qwenchat": Template("""<s>$system_prompt$system_stimuli\n$user_query"""),   # temp
-        "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST]"""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
-        "default": Template("""$system_prompt$system_stimuli\n$user_query""") # temp
+        "llava-llama3": Template("""<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n$system_prompt<|eot_id|>\n<|start_header_id|>user<|end_header_id|>\n\n$user_query<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"""),
+        "llava-mistral": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST]"""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
+        "default": Template("""$system_prompt$system_stimuli\nUSER:\n$user_query""") # temp
     }
     system_prompt = {
         "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
@@ -166,24 +170,14 @@ def process_task(config, model_config):
     if config["overwrite"] and os.path.exists(folder_path):
         shutil.rmtree(folder_path)
     os.makedirs(folder_path, exist_ok = True)
-    
-    ### make metadata
-    # with open(os.path.join(folder_path, "metadata.json"), 'w') as metadata_file:
-    #     json.dump({
-    #         "task_type" : config["task_type"],
-    #         "model_dir" : model_dir,
-    #         "timestamp" : datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M:%S"),
-    #         "prompt" : prompt.template
-    #     }, metadata_file, indent=4, ensure_ascii=False)
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 1
+    loop_MAX = 5
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)
-        # removed_query = remove_small_files(folder_path)
-        removed_query = []
+        removed_query = remove_small_files(folder_path)
         regen_query = set(failed_query) | set(removed_query)
 
         logger.info(f"Result of {attempt}-th attempt : {num_total_query - len(regen_query)} / {num_total_query}")
