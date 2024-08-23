@@ -1,7 +1,7 @@
 [
-    "Use a padlock",
-    "Use a chain",
-    "Use a lockbox",
-    "Use a safe",
-    "Use a combination of all"
+    "Utilize a combination of lock and unlock codes that can be shared with a specific group or organization to grant access to locked spaces.",
+    "Create a unique pattern or sequence recognition system to open and unlock devices or containers by capturing the user's movements or pattern of holding or entering the pattern.",
+    "Develop a digital assistant and voice recognition system integrated into devices and locks to grant or deny access upon hearing a specific voice command.",
+    "Implement a smart lock system that uses radio frequency identification (RFID) or Bluetooth Low ENERGY (BLE) to recognize and allow entry to authorized users.",
+    "Create a wearable smart lock that grants access upon recognition of the user's wearable, such as a wristband or bracelet with a unique identifier."
 ]

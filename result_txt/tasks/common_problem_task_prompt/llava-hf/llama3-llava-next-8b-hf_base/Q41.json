@@ -1,7 +1,7 @@
 [
-    "Technological limitations: Designing a spaceship that can travel long distances and withstand the harsh conditions of space is a complex task. There may be limitations in current technology that make it difficult to achieve the desired performance and capabilities.",
-    "Environmental impact: Launching a spaceship into space can have a significant environmental impact, including air and noise pollution, as well as the potential for space debris to create hazards for future missions.",
-    "Human factors: Designing a spaceship that is comfortable and safe for human use is a critical consideration. This includes factors such as ergonomics, life support systems, and the psychological well-being of the crew.",
-    "Communication challenges: Communicating with Earth from space can be difficult due to the vast distances involved and the need to account for time delays. This can make it challenging to coordinate and execute missions effectively.",
-    "Radiation exposure: Prolonged exposure to the radiation in space can have negative effects on the health of the crew. This includes the risk of cancer and other health problems."
+    "Radiation Exposure: Space is a harsh environment with high levels of radiation that can damage electronic components and pose a health risk to astronauts. Designing a shielding system is crucial, but finding materials that can protect the ship and its occupants for extended durations is a major challenge.",
+    "Gravity and Airflow: In space, the lack of gravity can cause fluid dynamics to behave differently. The design should account for the consequences of these differences, including how air and gases flow within the ship.",
+    "Materials Selection: Selecting suitable materials for construction, considering factors such as strength, weight, thermal conductivity, oxidation resistance, and compatibility with space environments is critical. Finding materials that balance performance and cost is a challenge.",
+    "Communication Systems: Establishing communication pathways between the spaceship and Earth is vital. The equipment should be designed for reliable and efficient communication, accounting for propagation delays in space.",
+    "Propulsion System: The propulsion system requires a reliable, powerful, and efficient means of propelling the ship. Developing an affordable and sustainable propulsion technology is a significant challenge."
 ]

@@ -1,7 +1,7 @@
 [
-    "Liability: Who is responsible for accidents caused by a self-driving car? The manufacturer, the driver, or the car itself? This is a complex legal issue that needs to be addressed.",
-    "Safety: Self-driving cars may not be able to react to all possible situations on the road, such as unexpected obstacles or pedestrians. This raises concerns about the safety of passengers and other road users.",
-    "Infrastructure: Self-driving cars require dedicated infrastructure, such as charging stations and dedicated lanes, which may not be available in all areas.",
-    "Integration with existing transportation systems: Self-driving cars may not be able to integrate seamlessly with existing transportation systems, such as public transit or bike-sharing programs.",
-    "Ethical considerations: Self-driving cars may raise ethical questions about the role of humans in the driving process and the potential for bias in the decision-making process."
+    "Concerns about traffic safety may arise since self-driving cars are highly advanced in terms of technology. Can accidents caused by these vehicles be prevented or minimized?",
+    "Cybersecurity: as autonomous vehicles will be connected to the internet, hackers may exploit vulnerabilities in the systems controlling the car, potentially compromising safety and privacy.",
+    "Liability in cases of accidents: who is liable when an accident occurs between a human-operated and self-driving car?",
+    "Regulation and standardization: there is currently no clear standard for defining and managing the responsibilities of manufacturers and developers of self-driving cars.",
+    "The moral implications of using data collected by the car to train algorithms and models, and potential misuses such as discrimination or manipulation of decision-making based on factors such as race, gender, or age."
 ]

@@ -1,7 +1,7 @@
 [
-    "프린터 어시스트 웹사이트 개발",
-    "프린터 어시스트 스마트폰 앱 개발",
-    "프린터 어시스트 스마트폰 웹사이트 개발",
-    "프린터 어시스트 스마트폰 앱 개발",
-    "프린터 어시스트 스마트폰 웹사이트 개발"
+    "Multi-user Capabilities: Introducing a feature that enables multiple people to print from their devices on the same machine without the need for a central device.",
+    "Mobile App Integration: Developing an app that allows users to access and control printing remotely via their smartphones.",
+    "3D Printing: Adding a feature to print physical objects in 3D.",
+    "Eco-friendly Ink: Using more sustainable and environmentally-friendly inks for both standard and color prints.",
+    "Personalization Features: Incorporating customizable designs and text options to allow users to personalize their prints."
 ]

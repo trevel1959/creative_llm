@@ -1,7 +1,7 @@
 [
-    "물병 용량 변경: 물병의 용량을 변경하여 다양한 용량의 물병을 제공할 수 있도록 하는 것이 좋습니다. 예를 들어, 작은 물병을 사용하여 간단한 물을 싶을 때, 큰 물병을 사용하여 많은 물을 마시고 싶을 때 사용할 수 있도록 하는 것입니다.",
-    "물병 재료 변경: 물병의 재료를 변경하여 다양한 재료를 사용할 수 있도록 하는 것이 좋습니다. 예를 들어, 재료가 다른 물병을 사용하여 다양한 재료를 섭취할 수 있도록 하는 것입니다.",
-    "물병 잠재력 추가: 물병에 잠재력을 추가하여 물병을 충분히 채우지 않아도 되는 것이 좋습니다. 예를 들어, 물병에 잠재력을 추가하여 물병을 충분히 채우지 않아도 되는 것입니다.",
-    "물병 잠재력 감지기 추가: 물병에 잠재력 감지기를 추가하여 물병이 충분히 채워져 있는지 감지할 수 있도록 하는 것이 좋습니다. 예를 들어, 물병에 잠재력 감지기를 추가하여 물병이 충분히 채워져 있는지 감지할 수 있도록 하는 것입니다.",
-    "물병 잠재력 감지기 연동: 물병에 잠재력 감지기를 연동하여 물병이 충분히 채워져 있는지 알려주는 것이 좋습니다. 예를 들어, 물병에 잠재력 감지기를 연동하여 물병이 충분히 채워져 있는지 알려주는 것입니다."
+    "Temperature monitoring: Embed a digital display or temperature sensor that informs the user about the water's temperature inside the bottle, helping them maintain an ideal hydration temperature.",
+    "Activity tracking: Integrate the water bottle with a wearable fitness band or smartphone app that tracks and logs the amount of water consumed daily and incentivizes users to meet specific hydration goals.",
+    "Multiple compartments: Design a reusable water bottle with separate compartments for hot and cold beverages, allowing users to enjoy a variety of drink temperatures at once.",
+    "Self-cleaning surface: Apply nanotechnology coatings to the bottle's surface, preventing stains, odors, and bacterial growth, ensuring a clean drinking experience.",
+    "Eco-friendly material: Use biodegradable or plants-based materials to make the water bottle, reducing the environmental impact of single-use bottles."
 ]

@@ -1,7 +1,7 @@
 [
-    "Biometric security: Implement biometric security measures such as fingerprint scanners or facial recognition systems to secure your belongings.",
-    "Smart home security: Integrate your belongings with a smart home security system that can detect intruders and alert you.",
-    "Encryption: Encrypt your belongings using a secure encryption method to protect them from unauthorized access.",
-    "Physical security: Use physical security measures such as safes, security cameras, or alarm systems to secure your belongings.",
-    "Cloud security: Store your belongings in a secure cloud storage system that uses advanced encryption and access control measures."
+    "Voice-activated locks: Implement a voice recognition system that can be programmed to unlock doors when certain commands are given. This would provide a hands-free and convenient way to secure belongings.",
+    "Electronic locks with keypads: Install keypad locks that require a unique access code to unlock the doors. This system could be updated periodically to ensure security.",
+    "Smart lock systems: Utilize smart locks that can be controlled remotely via a smartphone app or Bluetooth/Wi-Fi connectivity. Users can grant temporary access to their property to guests or contractors without sharing their access code.",
+    "Combination locks: Use combination locks that require a specific sequence of numbers or symbols to be entered before the keyhole turns and the door opens.",
+    "Dual-auth locks: Incorporate a two-factor authentication system, where a user must present an additional physical object (like a USB flash drive) before the lock opens. This would provide an extra layer of security."
 ]

@@ -1,0 +1,47 @@
+[
+    {
+        "config": {
+            "model_name": "llava-llama3",
+            "task_type": "tasks/is_task_prompt.json",
+            "stimuli": {
+                "name": "base",
+                "text": ""
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 1,
+            "lang": "en"
+        },
+        "error_queries": [
+            69,
+            42,
+            18,
+            61,
+            53,
+            54,
+            56,
+            59,
+            29,
+            30
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llava-llama3",
+            "task_type": "tasks/js_task_prompt.json",
+            "stimuli": {
+                "name": "base",
+                "text": ""
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 1,
+            "lang": "en"
+        },
+        "error_queries": [
+            86
+        ]
+    }
+]

@@ -1,7 +1,7 @@
 [
-    "Integrate with other smart devices",
-    "Add a sleep mode",
-    "Add a snooze button",
-    "Add a customizable alarm",
-    "Add a backup battery"
+    "Remote control: Create a remote control designed to turn the alarm on and off for added convenience.",
+    "Schedules and timers: Add the ability for users to set specific schedules and timers, allowing the alarm to turn on/off at specific times or on a daily/weekly/monthly basis.",
+    "Disarming feature: Include a disarming feature that allows authorized users to temporarily silence or turn off the alarm without having to physically access the alarm system.",
+    "Nightlight feature: Integrate a dim light that turns on when the alarm sounds, making it easier to see when getting up in the middle of the night.",
+    "Smartphone integration: Create an app that allows users to control their alarm system, receive push notifications when the alarm is triggered, and check the battery life of the system through their smartphone."
 ]

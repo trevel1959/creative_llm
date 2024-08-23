@@ -1,7 +1,7 @@
 [
-    "수물 수집 장치: 수물 수집 장치를 사용하여 주변 환경에서 수물을 수집하고 식물에게 공급할 수 있습니다.",
-    "수물 저장 장치: 수물 저장 장치를 사용하여 식물에게 수물을 공급할 수 있습니다.",
-    "수물 수집 장치: 수물 수집 장치를 사용하여 식물에게 수물을 공급할 수 있습니다.",
-    "수물 저장 장치: 수물 저장 장치를 사용하여 식물에게 수물을 공급할 수 있습니다.",
-    "수물 수집 장치: 수물 수집 장치를 사용하여 식물에게 수물을 공급할 수 있습니다."
+    "Use a watering can: If you don't have a rain barrel, you can use a watering can to water your plants. Simply fill the watering can with water and pour it over your plants.",
+    "Use a hose: If you have a hose, you can use it to water your plants. Simply attach a spray nozzle to the hose and turn it on to water your plants.",
+    "Use a sprinkler: If you have a sprinkler system, you can use it to water your plants. Simply turn it on and adjust the settings to water your plants for the appropriate amount of time.",
+    "Use a drip hose: If you have a drip hose, you can use it to water your plants. Simply attach it to a water source and turn it on to water your plants.",
+    "Use a water pump: If you have a water pump, you can use it to pump water from a nearby water source to your plants. This will allow you to water your plants even if the rain has stopped."
 ]
