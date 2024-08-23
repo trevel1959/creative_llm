@@ -1,0 +1,102 @@
+[
+    {
+        "config": {
+            "model_name": "llava-llama3",
+            "task_type": "tasks/common_problem_task_prompt.json",
+            "stimuli": {
+                "name": "base",
+                "text": ""
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 1,
+            "lang": "ko"
+        },
+        "error_queries": [
+            0,
+            2,
+            5,
+            8,
+            9,
+            15,
+            20,
+            21,
+            23,
+            24,
+            25,
+            27,
+            28,
+            30,
+            36,
+            45,
+            51,
+            52,
+            58,
+            59,
+            62,
+            66,
+            67,
+            71,
+            72,
+            73,
+            75,
+            76,
+            78,
+            80,
+            93,
+            97
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llava-llama3",
+            "task_type": "tasks/consequences_task_prompt.json",
+            "stimuli": {
+                "name": "base",
+                "text": ""
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 1,
+            "lang": "ko"
+        },
+        "error_queries": [
+            0,
+            1,
+            5,
+            8,
+            14,
+            17,
+            18,
+            21,
+            23,
+            26,
+            31,
+            32,
+            45,
+            47,
+            49,
+            50,
+            53,
+            59,
+            61,
+            64,
+            65,
+            68,
+            72,
+            74,
+            77,
+            79,
+            81,
+            84,
+            88,
+            89,
+            92,
+            93,
+            96,
+            99
+        ]
+    }
+]
