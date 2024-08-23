@@ -1,7 +1,7 @@
 [
-    "Introducing a lock mechanism to prevent unauthorized access to the tape inside, reducing the risk of theft or tampering.",
-    "Integrating a digital tape tracking system, displaying the amount of tape left on each roll, and alerting users when they are running low.",
-    "Expanding the tape dispenser into a modular multi-purpose cart or holder containing additional tools and features like a mini cutter and dispenser holes for organizing various tape sizes.",
-    "Building a smart tape dispenser that connects to a mobile app, allowing users to track inventory levels and restock orders automatically.",
-    "Implementing a voice assistant integration, allowing users to control the dispenser's functions and check tape levels with just their voice command."
+    "Customizable Tape: Allow users to customize the type of tape dispensed by the dispenser. This can be done by using a small dial or touchscreen screen to select the desired tape type.",
+    "Built-in Scissors: Add a small pair of scissors to the dispenser, allowing users to cut the tape without having to use separate scissors.",
+    "Magnetic Tape: Create a tape dispenser that dispenses magnetic tape, which can be used for holding items to metal surfaces.",
+    "Reusable Tape: Design a tape dispenser that dispenses reusable tape, which can be wound back up and reused multiple times.",
+    "Multifunctional Dispenser: Create a tape dispenser that also functions as a hole puncher or stapler, allowing users to perform multiple tasks with a single tool."
 ]

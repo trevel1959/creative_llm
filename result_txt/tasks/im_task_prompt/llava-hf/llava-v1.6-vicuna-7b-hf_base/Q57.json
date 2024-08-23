@@ -1,7 +1,7 @@
 [
-    "Gesture Recognition: Create a mouse with advanced gesture recognition technology, allowing users to interact with their computer by making simple hand movements instead of just clicking and scrolling. This could include features like drawing, writing, or even controlling on-screen games.",
-    "Ergonomic Design: Design an ergonomic computer mouse that mimics the natural shape of a hand, reducing strain and discomfort during prolonged use. The mouse should have contoured surfaces and a comfortable grip, allowing for more intuitive and precise control.",
-    "Multipurpose Tool: Turn the computer mouse into a multi-tool by incorporating additional functionality, such as a built-in flash drive, a small screen for displaying notifications, or even a speaker for playing sounds.",
-    "Haptic Feedback: Implement haptic feedback into the mouse, allowing users to feel a tactile response when they click or scroll. This could provide a more immersive and responsive experience, enhancing interaction with the computer.",
-    "Customizability: Create a programmable computer mouse with interchangeable buttons, allowing users to tailor their mouse to their specific needs and preferences. This could include different sensor types, button configurations, or even customizable scroll speeds."
+    "A computer mouse that can be used by people with arthritis.",
+    "A computer mouse that can be used by people with carpal tunnel syndrome.",
+    "A computer mouse that can be used by people with RSI (repetitive strain injury).",
+    "A computer mouse that can be used by people with dyspraxia.",
+    "A computer mouse that can be used by people with dysgraphia."
 ]

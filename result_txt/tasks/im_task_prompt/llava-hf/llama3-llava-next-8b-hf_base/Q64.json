@@ -1,7 +1,7 @@
 [
-    "Remote control: Create a remote control designed to turn the alarm on and off for added convenience.",
-    "Schedules and timers: Add the ability for users to set specific schedules and timers, allowing the alarm to turn on/off at specific times or on a daily/weekly/monthly basis.",
-    "Disarming feature: Include a disarming feature that allows authorized users to temporarily silence or turn off the alarm without having to physically access the alarm system.",
-    "Nightlight feature: Integrate a dim light that turns on when the alarm sounds, making it easier to see when getting up in the middle of the night.",
-    "Smartphone integration: Create an app that allows users to control their alarm system, receive push notifications when the alarm is triggered, and check the battery life of the system through their smartphone."
+    "Smart alarm system: The alarm system can be integrated with a smartphone app that allows users to control the system remotely. This can be useful for people who want to monitor their home while they are away.",
+    "Motion-activated alarm system: The alarm system can be equipped with motion sensors that activate the alarm when motion is detected. This can be useful for people who want to be alerted if someone enters their home without permission.",
+    "Sleep cycle alarm system: The alarm system can be programmed to wake users at a specific time based on their sleep cycle. This can help users feel more rested and alert in the morning.",
+    "Energy-saving mode: The alarm system can be programmed to turn off or reduce power consumption during certain hours to save energy.",
+    "Customizable alarm tones: The alarm system can be programmed to play different alarm tones based on the time of day or the day of the week. This can help users customize their alarm system to their preferences."
 ]

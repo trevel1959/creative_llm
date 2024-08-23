@@ -1,7 +1,7 @@
 [
-    "Malfunctioning Satellite: The satellite itself could experience technical problems that compromise its functionality. For example, component failure, power supply issues, or malfunctioning software. Fixing these problems could pose challenges, especially during space travel where space and time constraints must be considered.",
-    "Launch Costs: Launching a satellite is a costly endeavor, with high development, maintenance, and operational costs. The high cost of launching a new satellite could deter potential users or organizations from investing in new satellites, reducing the potential revenue for satellite operators.",
-    "Communication Issues: The satellite's communication system is crucial for staying in contact with the ground. If the satellite's communication system fails, it would be unable to communicate with the ground or receive updates, posing severe challenges for mission success.",
-    "Ground Support Systems: Ground support systems such as the launch site infrastructure, manufacturing facilities, and maintenance centers are essential for the entire process of satellite development and launch. Delays, accidents, or shutdowns can significantly impact the overall mission timeline, affecting the entire project.",
-    "Space Debris: In space, satellite collisions or explosions could create dangerous space debris that could threaten the safety of other satellites and space missions. This highlights the importance of safe and responsible operations in space."
+    "Technical issues: There may be technical problems with the launch vehicle or the satellite itself, such as malfunctioning equipment or software glitches, that could cause delays or even failure of the launch.",
+    "Cost overruns: Launching a satellite can be a costly endeavor, and there is always the risk of cost overruns due to unforeseen expenses or complications.",
+    "Environmental factors: Environmental factors, such as pollution or extreme temperatures, can impact the performance of the launch vehicle and the satellite once it is in space.",
+    "Safety concerns: Launching a satellite into space poses risks to both the people involved in the launch and the surrounding environment. Accidents or failures can lead to serious consequences.",
+    "Regulatory compliance: Launching a satellite into space may require compliance with various regulations and permits, which can be a time-consuming and complex process."
 ]

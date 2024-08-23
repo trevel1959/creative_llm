@@ -1,7 +1,7 @@
 [
-    "Voice control: Add voice control functionality to the ceiling fan, allowing users to turn it on/off and adjust the fan speed using voice commands.",
-    "Sleep mode: Implement a sleep mode on the ceiling fan that circulates air gently and runs at a lower noise level, promoting better sleep.",
-    "Remote control: Provide a remote control option for users to easily operate the ceiling fan from a distance, adding convenience to their home.",
-    "Humidifier attachment: Offer a detachable humidifier attachment that can be connected to the ceiling fan, improving air quality by maintaining optimal humidity levels.",
-    "Air purification system: Develop an air purification system integrated into the ceiling fan that captures dust, pollutants, and allergens, improving air quality."
+    "Energy-saving mode: Implement an energy-saving mode that reduces the fan's power consumption when it's turned on, which can help lower electricity bills and reduce the environmental impact.",
+    "Smart features: Add a smart sensor that automatically adjusts the fan's speed based on the room temperature and humidity, providing optimal comfort and energy efficiency.",
+    "Dehumidifying feature: Incorporate a built-in dehumidifying system that can remove excess moisture from the air, improving indoor air quality and reducing the risk of mold and mildew.",
+    "Air purification system: Integrate an air purification system that can filter out dust, allergens, and pollutants, providing a healthier environment for occupants.",
+    "Multi-speed settings: Add multiple speed settings that allow users to customize the fan's speed based on their preferences and the room size."
 ]

@@ -1,7 +1,7 @@
 [
-    "External Cybersecurity Threats: With multiple systems, platforms and endpoints connected to the internet, there is an increased risk of being targeted by hackers or other external threats.",
-    "Data Privacy Violations: Privacy regulations and policies may not be robust or up to date, causing unauthorized access or misuses of sensitive customer or employee data.",
-    "Inadequate Training: Employees may not be properly trained on cybersecurity measures or best practices, potentially increasing the risk of cyber attacks.",
-    "Poor Network Segmentation: A weak or unfragmented network may expose company data to unauthorized access or cyber-attacks, causing damage to the company's reputation and finances.",
-    "Outdated Software: Using outdated or unpatched software may leave vulnerabilities that hackers can exploit, compromising the integrity of critical systems."
+    "Malware and ransomware attacks: The company's computer systems may be targeted by hackers, resulting in data loss, system downtime, and potential financial loss.",
+    "Phishing attacks: Employees may be targeted by phishing scams, leading to the theft of sensitive information and potential financial loss.",
+    "Insider threats: Current or former employees may have unauthorized access to sensitive information, leading to data breaches or misuse of company resources.",
+    "Weaknesses in the company's cybersecurity infrastructure: The company may have outdated security measures, weak passwords, or other vulnerabilities that can be exploited by hackers.",
+    "Lack of employee training: Employees may not be adequately trained on how to recognize and respond to cybersecurity threats, leading to potential security breaches."
 ]

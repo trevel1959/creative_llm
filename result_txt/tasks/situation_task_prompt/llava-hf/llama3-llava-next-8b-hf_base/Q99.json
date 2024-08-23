@@ -1,7 +1,7 @@
 [
-    "Grayscales: While it's impossible to see colors, each object has its own unique grayscales represented by their darkness and lightness. When a picture is transformed into black and white, you can still identify objects by noting the light and dark areas within them.",
-    "Texture: Objects have unique textures, such as the roughness of sandpaper, the smoothness of a glass surface, or the pattern of a fabric. These textures might not lend them to color but do provide a way to distinguish between different objects.",
-    "Contrast: In a black and white world, the contrast between objects can be utilized to differentiate between them. For instance, the contrast between the black and white patches in a black and white picture can help identify the shapes, sizes, and forms of different objects.",
-    "Sound: Although all colors have different wavelengths that correspond to specific sounds, sound can serve as an alternative to seeing. By using the unique sounds that different objects make when touched, you can differentiate between them.",
-    "Taste and smell: Using your sense of taste and smell, you can identify different objects, especially when using the concept of flavor profiles (e.g., sweet, salty, sour, etc.) to associate them with certain characteristics. For example, a lemon is sour tasting and its scent is distinct and bitter, while sweeteners are generally sweet."
+    "Shape: Another way to differentiate between objects would be by their shape. For example, a round object would be distinguishable from a square object.",
+    "Texture: Objects with different textures could also be differentiated. For example, a smooth surface would be distinguishable from a rough surface.",
+    "Sound: In a world without color, objects could be differentiated by the sounds they make. For example, a bell would be distinguishable from a drum.",
+    "Smell: Objects could also be differentiated by their smell. For example, a flower would be distinguishable from a piece of metal.",
+    "Taste: Objects could also be differentiated by their taste. For example, a sweet object would be distinguishable from a sour object."
 ]

@@ -1,7 +1,7 @@
 [
-    "**Wind Turbines**: Installing small wind turbines in your yard or home can generate electricity when the wind blows. This, combined with solar panels, can provide a reliable source of energy.",
-    "**Hydroelectricity from Rainwater**: Collecting rainwater in a rainwater harvesting tank and using it to turn water wheels can generate small amounts of electricity. This can be used to charge your devices or provide emergency backup power.",
-    "**Electric Generators**: Portable electric generators, fueled by gas, diesel, or propane, can be used to generate electricity for charging devices in an emergency. However, this solution may not be the most environmentally friendly.",
-    "**Kinetic Energy**: Harvesting kinetic energy from foot traffic using floor tiles can generate electricity in public spaces. This energy can be used to charge devices placed on the same floor or to power street lights.",
-    "**Magnetic Resonance Power Transfer (MRPT)**: This technology allows for the charging of electric devices remotely. A transmitter generates an electromagnetic field that resonates with the receiver, transferring energy wirelessly."
+    "Wind Power: Wind turbines can be installed in homes or communities to generate electricity. The wind turns the turbines, which in turn generates electricity that can be used to power devices.",
+    "Hydroelectric Power: If there is a nearby water source, a small hydroelectric power plant can be set up to generate electricity. The water flow can be harnessed to turn turbines and generate electricity.",
+    "Human Power: Pedaling a stationary bike or using a handcrank can generate electricity to charge devices. This is a sustainable and eco-friendly option that doesn't rely on batteries.",
+    "Fuel Cells: Fuel cells can be used to generate electricity from a fuel source, such as hydrogen or methane. This can be a reliable alternative to batteries, especially for larger devices.",
+    "Battery-less Devices: Develop new technologies that don't rely on batteries, such as piezoelectric devices that generate electricity from vibrations or electromagnetic devices that generate electricity from magnetic fields."
 ]

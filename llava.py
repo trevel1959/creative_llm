@@ -155,16 +155,9 @@ def remove_small_files(folder_path, size_limit_bytes = 1024):
 
 def making_instructions(config):
     prompt_format = {
-<<<<<<< HEAD
-        "llama2chat": Template("""<s>[INST] <<SYS>>$system_prompt$system_stimuli\n<</SYS>>\n\n$user_query [/INST]"""),  # https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2/
-        "qwenchat": Template("""<s>$system_prompt$system_stimuli\n$user_query"""),   # temp
-        "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST]"""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
-        "default": Template("""<s>[INST] $system_prompt$system_stimuli\n$user_query [/INST]""") # temp
-=======
         "llava-llama3": Template("""<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n$system_prompt<|eot_id|>\n<|start_header_id|>user<|end_header_id|>\n\n$user_query<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n"""),
         "llava-mistral": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST]"""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
         "default": Template("""$system_prompt$system_stimuli\nUSER:\n$user_query""") # temp
->>>>>>> ad7c8a78ab62e8cecb6e22b5bd85a49453b00281
     }
     system_prompt = {
         "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
@@ -206,11 +199,7 @@ def process_task(config, model_config):
 
     error_log = {}
     prev_regen_query = set()
-<<<<<<< HEAD
     loop_MAX = 5
-=======
-    loop_MAX = 1
->>>>>>> ad7c8a78ab62e8cecb6e22b5bd85a49453b00281
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)
@@ -246,15 +235,9 @@ def task_execution_manager(lang = "en"):
     # with open(stimuli_file_path, "r", encoding="UTF-8") as stimuli_file:
     #     stimuli_list = json.load(stimuli_file)
     # stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
-<<<<<<< HEAD
-    stimuli_list = {'name': 'base', 'text': ''}
-    task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["llava-llama3"]
-=======
     stimuli_list = [{'name': 'base', 'text': ''}]
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
     model_list = ["llava-llama3", "llava-mistral", "llava-vicuna"]
->>>>>>> ad7c8a78ab62e8cecb6e22b5bd85a49453b00281
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -271,11 +254,7 @@ def task_execution_manager(lang = "en"):
                 "overwrite": False,
                 "example_num": 100,
                 "generate_answer_num" : 5,
-<<<<<<< HEAD
-                "batch_size": 10,
-=======
                 "batch_size": 34,
->>>>>>> ad7c8a78ab62e8cecb6e22b5bd85a49453b00281
                 "lang": lang,
             }
             result = process_task(config, model_config)

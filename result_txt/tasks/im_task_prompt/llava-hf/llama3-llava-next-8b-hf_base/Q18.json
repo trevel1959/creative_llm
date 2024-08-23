@@ -1,7 +1,7 @@
 [
-    "Automated traffic assistance: Integration of sensors and cameras to detect road conditions and provide navigation assistance, such as suggesting alternative routes based on traffic congestion or weather conditions, or alerting the driver of potential hazards.",
-    "Transparent fuel tank: A see-through fuel tank would allow drivers to see exactly how much fuel they have left at a glance, eliminating the need to check the level manually.",
-    "AI-powered maintenance diagnostics: Utilize machine learning algorithms to detect potential vehicle issues early on, notifying the driver and scheduling maintenance appointments when needed.",
-    "Climate control for passengers and trunk: With a climate control system for the trunk and passenger cabin, passengers can adjust the temperature inside the car and the temperature of their luggage based on what's in the trunk, ensuring a more comfortable journey.",
-    "Vehicle-to-vehicle communication: Equipping cars with V2V technology, which allows cars to share information about road conditions, traffic, and potential hazards, can help reduce collisions and improve overall road safety."
+    "Develop an augmented reality (AR) navigation system that provides real-time traffic updates, parking availability, and other useful information to the driver.",
+    "Implement a self-driving feature that allows the car to take control of the vehicle in traffic or parking situations, reducing the risk of accidents.",
+    "Create a voice-controlled assistant that can make phone calls, send messages, and control the car's systems without the need for manual inputs.",
+    "Develop a solar panel roof that generates electricity to power the car's systems, reducing the reliance on fossil fuels and lowering emissions.",
+    "Add a feature that allows the car to detect and respond to road hazards, such as potholes or slippery surfaces, to improve safety."
 ]

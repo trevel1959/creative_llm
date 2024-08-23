@@ -1,7 +1,7 @@
 [
-    "Cost of Development: Building a robot is a complex and expensive task",
-    "Power Source: A robot needs a power source to operate, but finding a portable, reliable and sustainable one is a challenge",
-    "Design and Complexity: As robots get more complex, designing and managing the different components becomes increasingly difficult",
-    "Safety: Ensuring the safety of both the people interacting with the robot and the robot itself is of high importance",
-    "Battery Life: For long-term use, a robot should have a long battery life"
+    "Safety and Security Concerns: A robot designed for use in a public space may raise safety and security concerns, particularly if it is not properly programmed or controlled. For example, a robot with advanced autonomy could potentially harm people or cause property damage if it malfunctions or encounters an unexpected situation.",
+    "Energy Consumption and Sustainability: Robots require power to operate, and their energy consumption can be a concern, particularly if they are designed for long-term use. Energy efficiency and sustainability are critical factors to consider in the development of robots to minimize their environmental impact.",
+    "Maintenance and Repair: Robots are mechanical devices, and like any other machine, they may require maintenance and repairs over time. Ensuring the availability of specialized personnel and resources to maintain and repair robots can be a challenge, particularly in remote or isolated areas.",
+    "Integration with Human Society: Robots are designed to interact with humans, and their integration into human society can be a complex issue. Ensuring that robots are designed to be compatible with human social norms, values, and behaviors is critical to their success.",
+    "Ethical Considerations: The development and use of robots raise ethical considerations such as the rights and responsibilities of robots, their impact on employment, and the potential for misuse. Ensuring that robots are designed and used in a responsible and ethical manner is critical to their long-term success."
 ]

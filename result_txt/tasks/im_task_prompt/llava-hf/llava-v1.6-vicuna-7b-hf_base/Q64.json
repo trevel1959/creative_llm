@@ -1,7 +1,7 @@
 [
-    "Voice control: Implementing voice control technology can provide users with the ability to arm, disarm, and customize their alarm system using voice commands, enhancing user experience and convenience.",
-    "Environmental sensors: Integrating environmental sensors, such as temperature and humidity sensors, can allow the alarm system to detect changes in the environment (e.g., fire) and automatically notify the homeowner or security services.",
-    "Blind integration: Combining the alarm system with smart home automation, such as blinds or curtains, can allow users to control their home's lighting and window coverings using the alarm system interface, providing an added layer of convenience.",
-    "Pet-friendly features: Adding features that distinguish between human and animal activity can help reduce false alarms caused by pets, ensuring that only suspicious activity triggers the alarm system.",
-    "Gait recognition: Utilizing gait recognition technology allows the alarm system to distinguish between authorized users and intruders based on their walking patterns, ensuring that only verified individuals can access the property."
+    "Voice recognition for arming and disarming the system.",
+    "Remote access via smartphone or tablet.",
+    "Integration with smart home devices for controlling the system.",
+    "Temperature sensor for arming and disarming the system based on temperature.",
+    "Infrared sensor for arming and disarming the system based on motion."
 ]
