@@ -91,9 +91,7 @@ def text_models_batch(model_config, input_strs, max_length=1024):
             attention_mask=attention_mask,
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
             max_new_tokens=1500,
-            do_sample=True,
-            temperature=0.9,
-            top_p=0.7
+            do_sample=True
         )
 
     # 출력 토큰을 텍스트로 변환
@@ -228,9 +226,10 @@ def task_main(lang = "en"):
     
     with open(stimuli_file_path, "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
-    stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
+    # stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
+    stimuli_list = [{"name": "base", "text": ""}]
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["llama3.1inst"]
+    model_list = ["vicuna"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -246,8 +245,8 @@ def task_main(lang = "en"):
             "overwrite": False,
             "example_num": 100,
             "generate_answer_num" : 5,
-            "batch_size": 50,
-            "lang": "ko",
+            "batch_size": 25,
+            "lang": lang,
         }
         result = process_task(config, model_config)
 
@@ -255,4 +254,4 @@ def task_main(lang = "en"):
         torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    task_main(lang = "ko")
+    task_main(lang = "en")
