@@ -1,0 +1,7 @@
+[
+    "Power and Communication Concerns: Once launched, satellites need to maintain their power supply, communication links and be resilient against solar flares. A faulty solar panel or a weak or downed communication signal can compromise the satellite's operation.",
+    "Orbit and Position Maintenance: Satellites need to be positioned accurately and need precision control to maintain their correct orbit. A loss of control or a malfunction can lead to unwanted changes in the trajectory, potentially causing the satellite to come too close to Earth or other satellites, potentially leading to collision.",
+    "Radiation and Extreme Temperatures: In space, satellites face a barrage of radiation which can damage electronic components, as well as extreme temperatures, often reaching 120°C above or 180°C below in their operation.",
+    "Space Debris: As satellites in the atmosphere, they can potentially collide with space debris like other satellites or old satellites not fully de-orbited.",
+    "Data Integrity: During transmission, satellite data is particularly fragile. Data corruption or loss can result from electronic failures, malfunctions, and interference by space debris."
+]

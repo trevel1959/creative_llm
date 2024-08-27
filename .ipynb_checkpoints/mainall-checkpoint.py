@@ -91,7 +91,10 @@ def text_models_batch(model_config, input_strs, max_length=1024):
             attention_mask=attention_mask,
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
             max_new_tokens=1500,
-            do_sample=True
+            do_sample=True,
+            temperature = 1.3,
+            top_p = 1,
+            top_k = 50
         )
 
     # 출력 토큰을 텍스트로 변환
@@ -130,7 +133,7 @@ def process_task(config, model_config):
     # collect batch datas
     model_dir = find_model_dir(config["model_name"])
     batch_size = config["batch_size"]
-
+    failed_queries = []
     while True:
         batch_data = []
         for task_type, stimuli in itertools.product(config["task_list"], config["stimuli_list"]):
@@ -181,10 +184,12 @@ def process_task(config, model_config):
                         failed_queries.append(file_path)
     
         failed_queries.extend(remove_small_files("result_txt"))
-        if not failed_queries: break
+        # if not failed_queries: break
+        break
 
     exe_time = time.time() - start_time
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
+    return failed_queries
 
 def parsing_text(text): 
     start_idx = text.find("1.")
@@ -229,29 +234,36 @@ def task_main(lang = "en"):
     # stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     stimuli_list = [{"name": "base", "text": ""}]
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["vicuna"]
+    model_list = ["llama2"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
-    for model_name in model_list:
-        model_config = load_model(model_name)
-        if model_config is None:
-            continue
-        
-        config = {
-            "model_name": model_name,
-            "task_list": task_list,
-            "stimuli_list": stimuli_list,
-            "overwrite": False,
-            "example_num": 100,
-            "generate_answer_num" : 5,
-            "batch_size": 25,
-            "lang": lang,
-        }
-        result = process_task(config, model_config)
 
-        del model_config
-        torch.cuda.empty_cache()
+    while True:
+        check = 0
+        for model_name in model_list:
+            model_config = load_model(model_name)
+            if model_config is None:
+                continue
+            
+            config = {
+                "model_name": model_name,
+                "task_list": task_list,
+                "stimuli_list": stimuli_list,
+                "overwrite": False,
+                "example_num": 100,
+                "generate_answer_num" : 5,
+                "batch_size": 25,
+                "lang": lang,
+            }
+            print(config)
+            result = process_task(config, model_config)
+            check += len(result)
+    
+            del model_config
+            torch.cuda.empty_cache()
+        if check == 0:
+            break
 
 if __name__ == "__main__":
     task_main(lang = "en")

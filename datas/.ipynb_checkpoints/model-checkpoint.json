@@ -17,5 +17,8 @@
     "codellama" : "meta-llama/CodeLlama-7b-hf",
     "codellamainst" : "meta-llama/CodeLlama-7b-Instruct-hf",
     "mammoth" : "TIGER-Lab/MAmmoTH-7B",
-    "mentallama" : "klyang/MentaLLaMA-chat-7B-hf"
+    "mentallama" : "klyang/MentaLLaMA-chat-7B-hf",
+    "llava-mistral": "llava-hf/llava-v1.6-mistral-7b-hf",
+    "llava-vicuna": "llava-hf/llava-v1.6-vicuna-7b-hf",
+    "llava-llama3": "llava-hf/llama3-llava-next-8b-hf"
 }

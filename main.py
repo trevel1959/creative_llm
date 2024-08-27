@@ -247,8 +247,10 @@ def task_execution_manager(lang = "en"):
     with open(stimuli_file_path, "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
+    stimuli_list = [stimuli_list[0]]
+    
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["mistralinst"]
+    model_list = ["llama2", "llama3", "vicuna", "mistral", "qwen2"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -265,8 +267,8 @@ def task_execution_manager(lang = "en"):
                 "overwrite": False,
                 "example_num": 100,
                 "generate_answer_num" : 5,
-                "batch_size": 25,
-                "lang": "ko",
+                "batch_size": 34,
+                "lang": lang,
             }
             result = process_task(config, model_config)
             

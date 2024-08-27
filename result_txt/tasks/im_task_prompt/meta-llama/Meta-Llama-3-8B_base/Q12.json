@@ -1,0 +1,7 @@
+[
+    "A wallet that can be programmed to open only when you are within a certain distance of it.",
+    "A wallet that can be programmed to open only when you are wearing a specific item of clothing.",
+    "A wallet that can be programmed to open only when you are wearing a specific item of clothing and carrying a specific item in your hand.",
+    "A wallet that can be programmed to open only when you are wearing a specific item of clothing and carrying a specific item in your hand, and you are within a certain distance of a specific location.",
+    "A wallet that can be programmed to open only when you are wearing a specific item of clothing and carrying a specific item in your hand, and you are within a certain distance of a specific location, and you have a specific item in your pocket."
+]
