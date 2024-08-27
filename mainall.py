@@ -92,9 +92,8 @@ def text_models_batch(model_config, input_strs, max_length=1024):
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
             max_new_tokens=1500,
             do_sample=True,
-            temperature = 1.3,
-            top_p = 1,
-            top_k = 50
+            temperature = 0.9,
+            top_p = 0.7
         )
 
     # 출력 토큰을 텍스트로 변환
@@ -112,6 +111,7 @@ def making_instructions(generate_answer_num, model_name, stimuli, user_query, la
     system_prompt = {
         "en": f"""\nFor the following questions, generate {generate_answer_num+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
         "ko": f"""\n주어진 질문을 따라, 창의적이고 독창적인 아이디어를 상세한 설명과 함께 {generate_answer_num+2}개 생성하세요.""",
+        "cn": f"""\n对于以下问题，请生成 {generate_answer_num+2} 个富有创意和原创性的想法，并提供详细的解释。"""
     }
     system_stimuli = stimuli
     
@@ -225,6 +225,9 @@ def task_main(lang = "en"):
     if lang == "ko":
         stimuli_file_path = "datas/stimuli_ko.json"
         task_folder_path = "tasks_ko"
+    if lang == "cn":
+        stimuli_file_path = "datas/stimuli_cn.json"
+        task_folder_path = "tasks_cn"
     else:
         stimuli_file_path = "datas/stimuli.json"
         task_folder_path = "tasks"
