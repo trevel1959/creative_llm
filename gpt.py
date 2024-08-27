@@ -154,6 +154,5 @@ def task_execution_manager(lang = "en"):
             process_task(logger, config)
       
 if(__name__ == "__main__"):
-    os.environ["OPENAI_API_KEY"] = "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"
     
     task_execution_manager(lang = "en")
