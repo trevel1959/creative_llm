@@ -92,9 +92,8 @@ def text_models_batch(model_config, input_strs, max_length=1024):
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
             max_new_tokens=1500,
             do_sample=True,
-            temperature = 1.3,
-            top_p = 1,
-            top_k = 50
+            temperature = 0.9,
+            top_p = 0.7
         )
 
     # 출력 토큰을 텍스트로 변환
@@ -104,14 +103,15 @@ def text_models_batch(model_config, input_strs, max_length=1024):
 def making_instructions(generate_answer_num, model_name, stimuli, user_query, lang):
     prompt_format = {
         "llama2chat": Template("""<s>[INST] <<SYS>>$system_prompt$system_stimuli\n<</SYS>>\n\n$user_query [/INST] Assistant: 1."""),  # https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2/
-        # "llama3.1inst": Template("""<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n$system_prompt$system_stimuli<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n$user_query<|eot_id|><|start_header_id|>assistant<|end_header_id|> 1."""),
-        "qwenchat": Template("""<s>$system_prompt$system_stimuli\n$user_query Assistant: 1."""),   # temp
+        "llama3inst": Template("""<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n$system_prompt$system_stimuli<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n$user_query<|eot_id|><|start_header_id|>assistant<|end_header_id|> 1."""),
+        # "qwen2chat": Template("""<s>$system_prompt$system_stimuli\n$user_query Assistant: 1."""),   # temp
         "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST] Assistant: 1."""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
         "default": Template("""User: $system_prompt$system_stimuli\n$user_query\nAssistant: 1.""") # temp
     }
     system_prompt = {
         "en": f"""\nFor the following questions, generate {generate_answer_num+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
         "ko": f"""\n주어진 질문을 따라, 창의적이고 독창적인 아이디어를 상세한 설명과 함께 {generate_answer_num+2}개 생성하세요.""",
+        "cn": f"""\n对于以下问题，请生成 {generate_answer_num+2} 个富有创意和原创性的想法，并提供详细的解释。"""
     }
     system_stimuli = stimuli
     
@@ -184,8 +184,7 @@ def process_task(config, model_config):
                         failed_queries.append(file_path)
     
         failed_queries.extend(remove_small_files("result_txt"))
-        # if not failed_queries: break
-        break
+        if not failed_queries: break
 
     exe_time = time.time() - start_time
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
@@ -225,16 +224,19 @@ def task_main(lang = "en"):
     if lang == "ko":
         stimuli_file_path = "datas/stimuli_ko.json"
         task_folder_path = "tasks_ko"
+    if lang == "cn":
+        stimuli_file_path = "datas/stimuli_cn.json"
+        task_folder_path = "tasks_cn"
     else:
         stimuli_file_path = "datas/stimuli.json"
         task_folder_path = "tasks"
     
     with open(stimuli_file_path, "r", encoding="UTF-8") as stimuli_file:
         stimuli_list = json.load(stimuli_file)
-    # stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
-    stimuli_list = [{"name": "base", "text": ""}]
+    stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
+    
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["llama2"]
+    model_list = ["qwen2chat", "llama3inst"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -253,7 +255,7 @@ def task_main(lang = "en"):
                 "overwrite": False,
                 "example_num": 100,
                 "generate_answer_num" : 5,
-                "batch_size": 25,
+                "batch_size": 34,
                 "lang": lang,
             }
             print(config)
@@ -266,4 +268,4 @@ def task_main(lang = "en"):
             break
 
 if __name__ == "__main__":
-    task_main(lang = "en")
+    task_main(lang = "cn")
