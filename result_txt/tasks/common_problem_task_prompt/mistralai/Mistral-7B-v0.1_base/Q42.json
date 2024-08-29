@@ -1,7 +1,0 @@
-[
-    "Poor Planning: An experiment without a good plan, is likely to not work properly.",
-    "UnsuitableCondition: The experiment may have a bad condition, such as a variable that is declared but not assigned.",
-    "UnappropriatedResources: The experiment may need a specific resource, such as a larger server, but it's not always available.",
-    "InefferentVariables: A variable may be declared, but not used anywhere in the program, or used in an incorrect way.",
-    "Poor PLANNING: The program may not be able to be done as planned correctly."
-]

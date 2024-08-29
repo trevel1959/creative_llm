@@ -1,7 +1,0 @@
-[
-    "Performance and Optimization: Ensure that the app runs smoothly and efficiently on all devices. The app should have a fast loading time and low battery consumption. It should also optimize data usage and provide a seamless user experience.",
-    "Data Security and Privacy: Ensure that user data is protected from unauthorized access and secure. The app should comply with industry-standard data security protocols, such as encryption, two-factor authentication, and secure data transmission.",
-    "Device Compatibility: Ensure that the app is compatible with all popular mobile devices, including smartphones and tablets. Testing should be done across different devices to ensure consistent functionality and performance.",
-    "Push Notifications: Ensure that push notifications are user-friendly and relevant to users. The notifications should be timely and not overly intrusive. Users should be given the option to opt-out of push notifications if they choose.",
-    "User Feedback and Support: Provide a mechanism for users to provide feedback and report issues. Address user queries and concerns as quickly as possible. Provide a customer support system that is available around the clock."
-]
