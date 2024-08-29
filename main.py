@@ -77,7 +77,7 @@ def text_models_batch(model_config, prompt, task_prompt, queries, max_length=102
     model.eval()
     
     # 입력 문자열을 배치 단위로 토크나이즈
-    input_strs = [prompt.safe_substitute(user_query= task_prompt + query) + " Assistant: \n1." for query in queries]
+    input_strs = [prompt.safe_substitute(user_query= task_prompt + query) for query in queries]
     inputs = tokenizer(input_strs, return_tensors="pt", padding=True, truncation=True, max_length=max_length)
     
     input_ids = inputs['input_ids'].to(device)
@@ -100,6 +100,28 @@ def text_models_batch(model_config, prompt, task_prompt, queries, max_length=102
     # 출력 토큰을 텍스트로 변환
     output_texts = [tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
     return output_texts
+
+def making_instructions(config):
+    prompt_format = {
+        "llama2chat": Template("""<s>[INST] <<SYS>>$system_prompt$system_stimuli\n<</SYS>>\n\n$user_query [/INST] Assistant: 1."""),  # https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2/
+        "llama3inst": Template("""<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n$system_prompt$system_stimuli<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n$user_query<|eot_id|><|start_header_id|>assistant<|end_header_id|> 1."""),
+        # "qwen2chat": Template("""<s>$system_prompt$system_stimuli\n$user_query Assistant: 1."""),   # temp
+        "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST] Assistant: 1."""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
+        "default": Template("""User: $system_prompt$system_stimuli\n$user_query\nAssistant: 1.""") # temp
+    }
+    system_prompt = {
+        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
+        "ko": f"""\n주어진 질문을 따라, 창의적이고 독창적인 아이디어를 상세한 설명과 함께 {config["generate_answer_num"]+2}개 생성하세요.""",
+        "cn": f"""\n对于以下问题，请生成 {config["generate_answer_num"]+2} 个富有创意和原创性的想法，并提供详细的解释。你必须用中文回答。"""
+    }
+    system_stimuli = config["stimuli"]["text"]
+    
+    prompt_temp = prompt_format.get(config["model_name"], prompt_format["default"]).safe_substitute(
+        system_prompt = system_prompt[config["lang"]],
+        system_stimuli = system_stimuli
+    )
+
+    return Template(prompt_temp)
 
 def make_and_save_answers(config, model_config, prompt, folder_path):
     with open(config["task_type"], "r", encoding="UTF-8") as task_file:
@@ -164,28 +186,6 @@ def remove_small_files(folder_path, size_limit_bytes = 1024):
             
     return removed_query
 
-def making_instructions(config):
-    prompt_format = {
-        "llama2chat": Template("""<s>[INST] <<SYS>>$system_prompt$system_stimuli\n<</SYS>>\n\n$user_query [/INST] Assistant: 1."""),  # https://llama.meta.com/docs/model-cards-and-prompt-formats/meta-llama-2/
-        "llama3inst": Template("""<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n$system_prompt$system_stimuli<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n$user_query<|eot_id|><|start_header_id|>assistant<|end_header_id|> 1."""),
-        # "qwen2chat": Template("""<s>$system_prompt$system_stimuli\n$user_query Assistant: 1."""),   # temp
-        "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST] Assistant: 1."""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
-        "default": Template("""User: $system_prompt$system_stimuli\n$user_query\nAssistant: 1.""") # temp
-    }
-    system_prompt = {
-        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
-        "ko": f"""\n주어진 질문을 따라, 창의적이고 독창적인 아이디어를 상세한 설명과 함께 {config["generate_answer_num"]+2}개 생성하세요.""",
-        "cn": f"""\n对于以下问题，请生成 {config["generate_answer_num"]+2} 个富有创意和原创性的想法，并提供详细的解释。"""
-    }
-    system_stimuli = config["stimuli"]["text"]
-    
-    prompt_temp = prompt_format.get(config["model_name"], prompt_format["default"]).safe_substitute(
-        system_prompt = system_prompt[config["lang"]],
-        system_stimuli = system_stimuli
-    )
-
-    return Template(prompt_temp)
-
 def process_task(config, model_config):
     logger = set_logger(logging.INFO)
     
@@ -213,7 +213,7 @@ def process_task(config, model_config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 5
+    loop_MAX = 2
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)

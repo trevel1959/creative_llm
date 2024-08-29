@@ -1,7 +1,7 @@
 [
-    "\"Smart Guitar Strings\": Implementing sensors in the guitar strings would allow for real-time monitoring of tension, helping players maintain proper technique and prevent potential issues like snapped strings. Additionally, these smart strings could provide feedback on playing dynamics or suggest alternative fingerings based on the music being played. Confidence level: 0.90.",
-    "\"Augmented Reality Tuner\": A guitar could be equipped with an AR interface that projects a tuner directly onto the strings when viewed through a smartphone or headset. This would provide a more interactive and visually engaging experience for beginners and advanced players alike. Confidence level: 0.92.",
-    "\"Guitar-Friendly Headphones\": Develop headphones specifically designed for musicians that are compatible with guitar pickups and offer high-quality sound reproduction. These headphones could feature a special circuit that compensates for any distortion introduced by the guitar's electronics. Confidence level: 0.88.",
-    "\"Guitar-shaped Stand\": A stand designed in the form of a guitar would not only provide stability but also serve as a conversation starter at performances or rehearsals. It could incorporate additional features such as built-in speakers or LED lights for a dynamic presentation. Confidence level: 0.86.",
-    "\"Portable Guitar Case with Built-in Amp\": Combine the functionality of a traditional guitar case with a small, portable amp, allowing musicians to practice and perform without needing to carry separate equipment. Confidence level: 0.90."
+    "**可变音高吉他**：这种吉他能够根据演奏者的音乐风格、情绪或环境变化调整音调。例如，在演奏摇滚乐时，音高会偏高以增加激情；在演奏古典音乐时，则会降低音高以增强情感表达。这种功能可以让吉他演奏更加个性化和情感化。",
+    "**3D打印自定义吉他**：用户可以根据个人喜好设计吉他的形状、颜色和纹理，然后使用3D打印技术制作出独一无二的吉他。这不仅增加了吉他的个性化程度，也让制作过程变得更加便捷和环保。",
+    "**太阳能充电吉他**：内置太阳能电池板，当放置在阳光下时，可以为吉他提供电力，从而延长电池寿命或直接为内置设备（如麦克风、耳机）供电。这对于经常户外演出的音乐家来说非常实用。",
+    "**情感感应吉他**：通过连接智能手机或其他设备，吉他可以捕捉演奏者的情绪变化，并相应地调整音色、节奏或伴奏。例如，当演奏者感到悲伤时，吉他可能会播放柔和的旋律，以增强情感共鸣。",
+    "**虚拟现实互动吉他**：与VR头盔配合使用，让演奏者仿佛置身于一个虚拟音乐会现场，与其他虚拟乐队成员一起演奏。这不仅增加了游戏性，也为远程合作提供了新途径。"
 ]

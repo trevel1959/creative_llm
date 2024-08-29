@@ -77,6 +77,7 @@ def text_models_batch(model_config, input_strs, max_length=1024):
     model.eval()
     
     # 입력 문자열을 배치 단위로 토크나이즈
+    
     inputs = tokenizer(input_strs, return_tensors="pt", padding=True, truncation=True, max_length=max_length)
     
     input_ids = inputs['input_ids'].to(device)
@@ -90,7 +91,7 @@ def text_models_batch(model_config, input_strs, max_length=1024):
             input_ids=input_ids,
             attention_mask=attention_mask,
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
-            max_new_tokens=1500,
+            max_new_tokens=1024,
             do_sample=True,
             temperature = 0.9,
             top_p = 0.7
@@ -111,7 +112,7 @@ def making_instructions(generate_answer_num, model_name, stimuli, user_query, la
     system_prompt = {
         "en": f"""\nFor the following questions, generate {generate_answer_num+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
         "ko": f"""\n주어진 질문을 따라, 창의적이고 독창적인 아이디어를 상세한 설명과 함께 {generate_answer_num+2}개 생성하세요.""",
-        "cn": f"""\n对于以下问题，请生成 {generate_answer_num+2} 个富有创意和原创性的想法，并提供详细的解释。"""
+        "cn": f"""\n对于以下问题，请生成 {generate_answer_num+2} 个富有创意和原创性的想法，并提供详细的解释。你必须用中文回答。"""
     }
     system_stimuli = stimuli
     
@@ -255,7 +256,7 @@ def task_main(lang = "en"):
                 "overwrite": False,
                 "example_num": 100,
                 "generate_answer_num" : 5,
-                "batch_size": 34,
+                "batch_size": 40,
                 "lang": lang,
             }
             print(config)

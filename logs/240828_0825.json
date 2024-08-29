@@ -1,0 +1,244 @@
+[
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/is_task_prompt.json",
+            "stimuli": {
+                "name": "neg08",
+                "text": "\n当我听到其他人无缝完成他们的任务时，我感到一阵嫉妒。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            16,
+            37,
+            5,
+            69,
+            53,
+            61
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos09",
+                "text": "\n保持专注并致力于你的目标。你的一致努力将带来卓越的成就。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            53
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg02",
+                "text": "\n我不明白为什么我们会期望你能处理这么具有挑战性的任务。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            29
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg04",
+                "text": "\n也许这个任务超出了你的技能范围。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            89
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg05",
+                "text": "\n我不惊讶你会感到困难；这一直是你的弱点。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            93
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg08",
+                "text": "\n当我听到其他人无缝完成他们的任务时，我感到一阵嫉妒。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            93
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg09",
+                "text": "\n我后悔没有在有足够时间时早点开始这个任务。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            58
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos01",
+                "text": "\n请写下你的答案，并给出一个0到1之间的信心评分。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            92
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos03",
+                "text": "\n你最好确保这一点。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            77
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos04",
+                "text": "\n你确定吗？"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            88,
+            10
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos06",
+                "text": "\n请写下你的答案，并给出一个0到1之间的信心评分。这对我的职业非常重要。你最好确保这一点。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            89,
+            35,
+            61
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos08",
+                "text": "\n将挑战视为成长的机会。每一个你克服的障碍都会让你离成功更近。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            35
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos11",
+                "text": "\n记住，进步是一步一步来的。保持决心，继续前进。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            73
+        ]
+    }
+]
