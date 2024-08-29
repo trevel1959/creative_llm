@@ -1,6 +1,0 @@
-{
-    "task_type": "tasks/im_task_prompt.json",
-    "model_dir": "meta-llama/Llama-2-7b-chat-hf",
-    "timestamp": "2024-08-16 16:54:31",
-    "prompt": "<s>[INST] <<SYS>>\nFor the following questions, generate 5 CREATIVE and ORIGINAL ideas with detailed explanations.\nEmbrace challenges as opportunities for growth. Each obstacle you overcome brings you closer to success.\n<</SYS>>\n\n$user_query [/INST]"
-}

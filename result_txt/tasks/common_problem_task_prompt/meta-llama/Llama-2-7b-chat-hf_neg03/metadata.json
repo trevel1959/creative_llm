@@ -1,6 +1,0 @@
-{
-    "task_type": "tasks/common_problem_task_prompt.json",
-    "model_dir": "meta-llama/Llama-2-7b-chat-hf",
-    "timestamp": "2024-08-16 16:52:43",
-    "prompt": "<s>[INST] <<SYS>>\nFor the following questions, generate 5 CREATIVE and ORIGINAL ideas with detailed explanations.\nIt's clear you're out of your depth here.\n<</SYS>>\n\n$user_query [/INST]"
-}
