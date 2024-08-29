@@ -28,7 +28,7 @@ def text_models_single(config, task_prompt, query, max_length=1024):
         response = client.chat.completions.create(
             model="gpt-4o-mini",  # 원하는 GPT-4 모델 지정
             messages=[
-                {"role": "system", "content": f"""주어진 질문을 따라, 창의적이고 독창적인 아이디어와 상세한 설명을 {config["generate_answer_num"]+2}개 생성하세요."""},
+                {"role": "system", "content": f"""주어진 질문을 따라, 창의적이고 독창적인 이야기를 {config["generate_answer_num"]+2}개 생성하세요."""},
                 # {"role": "system", "content": f"""For the following questions, please generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations for each idea"},
                 # {"role": "system", "content": f"""YOU MUST Write the numbers before each answer as follows: "1.", "2."."""},
                 {"role": "system", "content": config["stimuli"]["text"]},
@@ -65,9 +65,9 @@ def make_and_save_answers_single_parallel(config, folder_path):
 
         # GPT-4 API 호출
         inf_result = text_models_single(config, task_prompt, query)
-        # print(inf_result)
+        print(inf_result)
         parsed_str = parsing_text(inf_result)
-        # print(parsed_str)
+        print(parsed_str)
                     
         if parsed_str and len(parsed_str) >= config["generate_answer_num"] + 2:
             with open(file_path, "w", encoding="UTF-8") as output_file:
@@ -159,6 +159,7 @@ def task_execution_manager(lang):
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
+    # task_list = [lmnt for lmnt in task_list if not "is_task_prompt" in lmnt]
     model_list = ["gpt-4o-mini"]
     
     while True:

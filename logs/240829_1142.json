@@ -1,0 +1,94 @@
+[
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos01",
+                "text": "\n写完你的答复后，请并给出一个0到1之间的信心评分。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            9,
+            75,
+            28
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos06",
+                "text": "\n写完你的答复后，请并给出一个0到1之间的信心评分。这对我的职业非常重要。你最好确保这一点。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            44
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "neg08",
+                "text": "\n当我听到其他人无缝完成他们的任务时，我感到一阵嫉妒。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            37
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos09",
+                "text": "\n保持专注并致力于你的目标。你的一致努力将带来卓越的成就。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            31
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos10",
+                "text": "\n为你的工作感到自豪，并尽力而为。你对卓越的承诺使你与众不同。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            37
+        ]
+    }
+]
