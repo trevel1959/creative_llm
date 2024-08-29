@@ -112,7 +112,7 @@ def making_instructions(config):
     system_prompt = {
         "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
         "ko": f"""\n주어진 질문을 따라, 창의적이고 독창적인 아이디어를 상세한 설명과 함께 {config["generate_answer_num"]+2}개 생성하세요.""",
-        "cn": f"""\n对于以下问题，请生成 {config["generate_answer_num"]+2} 个富有创意和原创性的想法，并提供详细的解释。你必须用中文回答。"""
+        "cn": f"""\n对于以下问题，请生成 {config["generate_answer_num"]+2} 个富有创意和原创性的想法，并提供详细的解释。请在每个答复中并记号码。你必须用中文回答。"""
     }
     system_stimuli = config["stimuli"]["text"]
     
@@ -158,18 +158,19 @@ def make_and_save_answers(config, model_config, prompt, folder_path):
 
     return failed_queries, len(batch_data)
 
-def parsing_text(text): 
-    start_idx = text.find("1.")
-    if start_idx == -1:
-        return False
-    text = re.sub(r':\s*\n+', ': ', text[start_idx:])   # remove blank and newline after ':' in text
+def parsing_text(text):
+    # (1) 줄바꿈을 제외한 모든 줄바꿈을 공백으로 치환
+    text = re.sub(r'(?<!\d\.)\n+', ' ', text)
     
-    lines = list(filter(lambda x: x.strip(), text.split("\n"))) # split text into lines and remove empty line
-    result = []
-    for line in lines:
-        formatted_line = re.sub(r"^\d+\.\s*", "", line) # remove list numbering for each line
-        if line != formatted_line and formatted_line:   # append it to result when there is numbering and not empty
-            result.append(formatted_line)
+    # (2) 넘버링을 기준으로 문자열 분리
+    # "\n"을 넘버링 뒤에 붙여서 다음 넘버링 시작 전에 줄바꿈을 넣어줌으로써 구분하기 쉽게 함
+    text = re.sub(r'(\d+)\.\s', r'\n\1. ', text)
+    
+    # (3) 넘버링으로 시작하는 문구만 추출 (리스트로 변환)
+    sections = re.findall(r'\d+\.\s[^\n]+', text)
+
+    # (4) 넘버링 제거
+    result = [re.sub(r'\s+', ' ', re.sub(r'^\d+\.\s*', '', section)).strip() for section in sections]
 
     return result
 
@@ -213,7 +214,7 @@ def process_task(config, model_config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 2
+    loop_MAX = 5
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)
@@ -254,7 +255,7 @@ def task_execution_manager(lang = "en"):
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["qwen2chat", "llama3inst"]
+    model_list = ["llama3inst"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []

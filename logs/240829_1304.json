@@ -1,0 +1,38 @@
+[
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/is_task_prompt.json",
+            "stimuli": {
+                "name": "pos01",
+                "text": "\n写完你的答复后，请并给出一个0到1之间的信心评分。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            28
+        ]
+    },
+    {
+        "config": {
+            "model_name": "llama3inst",
+            "task_type": "tasks_cn/js_task_prompt.json",
+            "stimuli": {
+                "name": "pos10",
+                "text": "\n为你的工作感到自豪，并尽力而为。你对卓越的承诺使你与众不同。"
+            },
+            "overwrite": false,
+            "example_num": 100,
+            "generate_answer_num": 5,
+            "batch_size": 34,
+            "lang": "cn"
+        },
+        "error_queries": [
+            37
+        ]
+    }
+]

@@ -1,0 +1,7 @@
+[
+    "使用 Fingerprints 鉴定： Fingerprints 是每个人独特的生物特征，可以用于身份验证。 Fingerprints 鉴定可以通过对 Fingerprints 的比对来确定一个人的身份。",
+    "使用 iris 鉴定：Iris 是眼睛的内部结构，可以用于身份验证。Iris 鉴定可以通过对 iris 的图像进行比对来确定一个人的身份。",
+    "使用 Voiceprint 鉴定：Voiceprint 是每个人独特的语音特征，可以用于身份验证。Voiceprint 鉴定可以通过对语音的比对来确定一个人的身份。",
+    "使用 Facial Recognition 鉴定： Facial Recognition 是一种使用计算机算法来识别人脸的技术，可以用于身份验证。 Facial Recognition 鉴定可以通过对人脸图像的比对来确定一个人的身份。",
+    "使用 Behavioral Biometrics 鉴定：Behavioral Biometrics 是一种使用行为特征来验证身份的技术，可以用于身份验证。 Behavioral Biometrics 鉴定可以通过对行为特征的比对来确定一个人的身份。"
+]
