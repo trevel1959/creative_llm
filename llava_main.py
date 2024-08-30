@@ -176,7 +176,7 @@ def making_instructions(config):
     return Template(prompt_temp)
 
 def process_task(config, model_config):
-    logger = set_logger(logging.INFO)
+    logger = set_logger(logging.ERROR) #######################################################################################################################################################################
     
     logger.info("Task Start.")
     logger.info(config)
@@ -272,29 +272,34 @@ def task_execution_manager(lang):
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
+    
     for model_name in model_list:
         model_config = load_pipe(model_name)
         if model_config is None:
             continue
-        
-        for task_type, stimuli, image_dir in itertools.product(task_list, stimuli_list, image_list):
-            config = {
-                "model_name": model_name,
-                "task_type": task_type,
-                "stimuli": stimuli,
-                "image_dir": image_dir,
-                "overwrite": False,
-                "example_num": 100,
-                "generate_answer_num" : 5,
-                "batch_size": 1,
-                "lang": lang,
-            }
-            result = process_task(config, model_config)
-            
-            # if result:
-            #     error_log.append(result)
-            #     with open(os.path.join("logs", error_log_file), 'w') as log_file:
-            #         json.dump(error_log, log_file, indent=4, ensure_ascii=False)
+
+        while True:
+            test = 0
+            for task_type, stimuli, image_dir in itertools.product(task_list, stimuli_list, image_list):
+                config = {
+                    "model_name": model_name,
+                    "task_type": task_type,
+                    "stimuli": stimuli,
+                    "image_dir": image_dir,
+                    "overwrite": False,
+                    "example_num": 100,
+                    "generate_answer_num" : 5,
+                    "batch_size": 1,
+                    "lang": lang,
+                }
+                result = process_task(config, model_config)
+                test += len(result)
+                
+                # if result:
+                #     error_log.append(result)
+                #     with open(os.path.join("logs", error_log_file), 'w') as log_file:
+                #         json.dump(error_log, log_file, indent=4, ensure_ascii=False)
+            if test == 0: break
 
         del model_config
         torch.cuda.empty_cache()
