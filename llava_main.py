@@ -163,8 +163,8 @@ def making_instructions(config):
         "default": Template("""$system_prompt$system_stimuli\nUSER:\n$user_query""") # temp
     }
     system_prompt = {
-        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
-        "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]+2}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요. 답변은 반드시 한국어로 하세요.""",
+        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations. Make sure to print out the answer in English.""",
+        "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]+2}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요. 답변은 반드시 한국어로 출력하세요.""",
     }
     system_stimuli = config["stimuli"]["text"]
     
@@ -266,7 +266,8 @@ def task_execution_manager(lang):
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     stimuli_list = [stimuli_list[0]]    ######################################################################################
     
-    image_list = sorted(glob.glob('images/*'))
+    image_list = sorted(glob.glob('images/*')) + [None]
+    print(image_list)
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
     model_list = ["llava-llama3"]
 
@@ -306,3 +307,4 @@ def task_execution_manager(lang):
 
 if __name__ == "__main__":
     task_execution_manager(lang = "ko")
+    task_execution_manager(lang = "en")
