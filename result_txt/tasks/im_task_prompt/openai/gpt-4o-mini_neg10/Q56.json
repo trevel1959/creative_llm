@@ -1,3 +1,7 @@
 [
-    "Smart Bicycle Bell with Navigation Alerts:**  "
+    "**Multi-Sound Bell**: Create a bell that offers multiple sound options (e.g., traditional ring, horn, chime) that can be switched based on the environment or user preference.",
+    "**Light-Up Bell**: Design a bell that incorporates LED lights, which not only rings but also flashes bright colors to increase visibility, especially at night.",
+    "**Solar-Powered Bell**: Implement a solar panel that charges a battery to power the bell, making it eco-friendly and ensuring it never runs out of power.",
+    "**Interactive Bell**: Develop a bell that can record a short message or sound, allowing cyclists to personalize their alert to pedestrians or other cyclists.",
+    "**GPS-Enabled Bell**: Introduce a bell that can alert nearby cyclists or pedestrians of the cyclist's location via GPS, enhancing safety in crowded areas."
 ]
