@@ -33,12 +33,27 @@ def llava_inference_simple(pipe, img, prompt = "User: hello! \nAssistant:", max_
         generate_kwargs = {
             "max_new_tokens": max_new_tokens,
             "do_sample": True,
-            "temperature": 1,
-            "top_p": 1,
-            "top_k": 50
+            "temperature": 0.9,
+            "top_p": 0.7
         }
     )
     return outputs[0]["generated_text"]
+
+def llava_inference_batch(pipe, img, prompts, max_new_tokens = 1024):
+    imgs = [img] * len(prompts)
+    prompts = ["<image>"+prompt for prompt in prompts]
+    
+    outputs = pipe(
+        images = imgs,
+        prompt = prompts,
+        generate_kwargs = {
+            "max_new_tokens": max_new_tokens,
+            "do_sample": True,
+            "temperature": 0.9,
+            "top_p": 0.7
+        }
+    )
+    return [output["generated_text"] for output in outputs]
 
 def set_logger(level):
     logger = logging.getLogger(__name__)
@@ -71,8 +86,9 @@ def text_models_batch(model_config, img, prompt, task_prompt, queries, max_lengt
     for input in input_strs:
         output_texts.append(llava_inference_simple(pipe, img, input))
 
-    # 출력 토큰을 텍스트로 변환
     return output_texts
+    # 출력 토큰을 텍스트로 변환
+    # return llava_inference_batch(pipe, img, input_strs)
 
 def make_and_save_answers(config, model_config, prompt, folder_path):
     with open(config["task_type"], "r", encoding="UTF-8") as task_file:
@@ -180,7 +196,7 @@ def process_task(config, model_config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 3
+    loop_MAX = 1
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)
@@ -252,12 +268,6 @@ def task_execution_manager(lang):
     
     image_list = sorted(glob.glob('images/*'))
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-<<<<<<< HEAD
-    task_list = task_list[4:]
-=======
-
-    task_list = task_list[:4]
->>>>>>> f1cedab563409b52112fdfc2a75affef8f6e2dbf
     model_list = ["llava-llama3"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
