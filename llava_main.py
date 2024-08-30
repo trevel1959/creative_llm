@@ -252,6 +252,7 @@ def task_execution_manager(lang):
     
     image_list = sorted(glob.glob('images/*'))
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
+    task_list = task_list[4:]
     model_list = ["llava-llama3"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
