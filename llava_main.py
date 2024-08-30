@@ -180,7 +180,7 @@ def process_task(config, model_config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 1
+    loop_MAX = 3
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)
@@ -252,6 +252,8 @@ def task_execution_manager(lang):
     
     image_list = sorted(glob.glob('images/*'))
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
+
+    task_list = task_list[:4]
     model_list = ["llava-llama3"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
