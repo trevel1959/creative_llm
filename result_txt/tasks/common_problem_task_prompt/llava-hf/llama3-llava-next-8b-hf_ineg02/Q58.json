@@ -1,0 +1,7 @@
+[
+    "Insufficient Training: The company may not have provided adequate training to its employees on cybersecurity best practices, which could lead to employees unknowingly falling prey to phishing attacks or other security breaches.",
+    "Outdated Technology: The company's technology may be outdated, making it more vulnerable to modern cyber threats. This could include using older operating systems, outdated firewalls, or legacy applications that are no longer supported.",
+    "Lack of Incident Response Plan: The company may not have a well-defined incident response plan in place to handle cyber security incidents. This could lead to delayed responses and increased damage to the company's reputation and financial losses.",
+    "Inefficient Network Segmentation: The company's network may not be properly segmented, which could allow attackers to easily move laterally across the network once they have gained access to one system.",
+    "Human Error: Human error is a significant factor in many cyber security incidents. Employees may accidentally click on phishing links, open attachments from unknown sources, or use weak passwords."
+]

@@ -1,0 +1,7 @@
+[
+    "Compatibility: The software product should be compatible with different operating systems and devices. This may involve testing on multiple platforms and devices to ensure seamless integration.",
+    "Security: The software product should have robust security features to protect user data and prevent unauthorized access. This may involve implementing encryption, two-factor authentication, and regular security updates.",
+    "Performance: The software product should be fast and responsive, with minimal lag or delays. This may involve optimizing code and using efficient algorithms to reduce processing time.",
+    "Accessibility: The software product should be accessible to users with disabilities, such as visual impairments or mobility issues. This may involve implementing features such as screen reader compatibility, high-contrast color schemes, and keyboard-only navigation.",
+    "Integration: The software product should be able to integrate with other software and services, such as cloud storage or project management tools. This may involve developing APIs or supporting a wide range of third-party integrations."
+]

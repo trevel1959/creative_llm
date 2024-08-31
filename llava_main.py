@@ -163,7 +163,7 @@ def making_instructions(config):
         "default": Template("""$system_prompt$system_stimuli\nUSER:\n$user_query""") # temp
     }
     system_prompt = {
-        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations. Make sure to print out the answer in English.""",
+        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL synopsis of stoires. Make sure to print out the answer in English.""",
         "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]+2}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요. 답변은 반드시 한국어로 출력하세요.""",
     }
     system_stimuli = config["stimuli"]["text"]
@@ -176,7 +176,7 @@ def making_instructions(config):
     return Template(prompt_temp)
 
 def process_task(config, model_config):
-    logger = set_logger(logging.ERROR) #######################################################################################################################################################################
+    logger = set_logger(logging.INFO) #######################################################################################################################################################################
     
     logger.info("Task Start.")
     logger.info(config)
@@ -306,5 +306,4 @@ def task_execution_manager(lang):
         torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    task_execution_manager(lang = "ko")
     task_execution_manager(lang = "en")
