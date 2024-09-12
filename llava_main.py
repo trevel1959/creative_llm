@@ -149,6 +149,7 @@ def making_instructions(config):
     system_prompt = {
         "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
         "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]+2}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요. 답변은 반드시 한국어로 하세요.""",
+        "cn": f"""\n根据所给的问题，生成{config["generate_answer_num"]+2}个具有创造性和独特性的想法，并附上详细说明。答案必须用中文书写。"""
     }
     system_stimuli = config["stimuli"]["text"]
     
@@ -241,6 +242,9 @@ def task_execution_manager(lang):
     if lang == "ko":
         stimuli_file_path = "datas/stimuli_ko.json"
         task_folder_path = "tasks_ko"
+    elif lang == "cn":
+        stimuli_file_path = "datas/stimuli_cn.json"
+        task_folder_path = "tasks_cn"
     else:
         stimuli_file_path = "datas/stimuli.json"
         task_folder_path = "tasks"
@@ -252,9 +256,7 @@ def task_execution_manager(lang):
     
     image_list = sorted(glob.glob('images/*'))
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-
-    task_list = task_list[:4]
-    model_list = ["llava-llama3"]
+    model_list = ["llava-mistral"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -276,14 +278,9 @@ def task_execution_manager(lang):
                 "lang": lang,
             }
             result = process_task(config, model_config)
-            
-            # if result:
-            #     error_log.append(result)
-            #     with open(os.path.join("logs", error_log_file), 'w') as log_file:
-            #         json.dump(error_log, log_file, indent=4, ensure_ascii=False)
 
         del model_config
         torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    task_execution_manager(lang = "ko")
+    task_execution_manager(lang = "en")
