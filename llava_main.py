@@ -33,12 +33,27 @@ def llava_inference_simple(pipe, img, prompt = "User: hello! \nAssistant:", max_
         generate_kwargs = {
             "max_new_tokens": max_new_tokens,
             "do_sample": True,
-            "temperature": 1,
-            "top_p": 1,
-            "top_k": 50
+            "temperature": 0.9,
+            "top_p": 0.7
         }
     )
     return outputs[0]["generated_text"]
+
+def llava_inference_batch(pipe, img, prompts, max_new_tokens = 1024):
+    imgs = [img] * len(prompts)
+    prompts = ["<image>"+prompt for prompt in prompts]
+    
+    outputs = pipe(
+        images = imgs,
+        prompt = prompts,
+        generate_kwargs = {
+            "max_new_tokens": max_new_tokens,
+            "do_sample": True,
+            "temperature": 0.9,
+            "top_p": 0.7
+        }
+    )
+    return [output["generated_text"] for output in outputs]
 
 def set_logger(level):
     logger = logging.getLogger(__name__)
@@ -71,8 +86,9 @@ def text_models_batch(model_config, img, prompt, task_prompt, queries, max_lengt
     for input in input_strs:
         output_texts.append(llava_inference_simple(pipe, img, input))
 
-    # 출력 토큰을 텍스트로 변환
     return output_texts
+    # 출력 토큰을 텍스트로 변환
+    # return llava_inference_batch(pipe, img, input_strs)
 
 def make_and_save_answers(config, model_config, prompt, folder_path):
     with open(config["task_type"], "r", encoding="UTF-8") as task_file:
@@ -147,9 +163,14 @@ def making_instructions(config):
         "default": Template("""$system_prompt$system_stimuli\nUSER:\n$user_query""") # temp
     }
     system_prompt = {
+<<<<<<< HEAD
         "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
         "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]+2}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요. 답변은 반드시 한국어로 하세요.""",
         "cn": f"""\n根据所给的问题，生成{config["generate_answer_num"]+2}个具有创造性和独特性的想法，并附上详细说明。答案必须用中文书写。"""
+=======
+        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL synopsis of stoires. Make sure to print out the answer in English.""",
+        "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]+2}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요. 답변은 반드시 한국어로 출력하세요.""",
+>>>>>>> 5210bbf346f6b64b8e056fa9f1f582bfc4e122e4
     }
     system_stimuli = config["stimuli"]["text"]
     
@@ -161,7 +182,7 @@ def making_instructions(config):
     return Template(prompt_temp)
 
 def process_task(config, model_config):
-    logger = set_logger(logging.INFO)
+    logger = set_logger(logging.INFO) #######################################################################################################################################################################
     
     logger.info("Task Start.")
     logger.info(config)
@@ -181,7 +202,7 @@ def process_task(config, model_config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 3
+    loop_MAX = 1
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)
@@ -254,16 +275,23 @@ def task_execution_manager(lang):
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     stimuli_list = [stimuli_list[0]]    ######################################################################################
     
-    image_list = sorted(glob.glob('images/*'))
+    image_list = sorted(glob.glob('images/*')) + [None]
+    print(image_list)
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
+<<<<<<< HEAD
     model_list = ["llava-mistral"]
+=======
+    model_list = ["llava-llama3"]
+>>>>>>> 5210bbf346f6b64b8e056fa9f1f582bfc4e122e4
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
+    
     for model_name in model_list:
         model_config = load_pipe(model_name)
         if model_config is None:
             continue
+<<<<<<< HEAD
         
         for task_type, stimuli, image_dir in itertools.product(task_list, stimuli_list, image_list):
             config = {
@@ -278,6 +306,31 @@ def task_execution_manager(lang):
                 "lang": lang,
             }
             result = process_task(config, model_config)
+=======
+
+        while True:
+            test = 0
+            for task_type, stimuli, image_dir in itertools.product(task_list, stimuli_list, image_list):
+                config = {
+                    "model_name": model_name,
+                    "task_type": task_type,
+                    "stimuli": stimuli,
+                    "image_dir": image_dir,
+                    "overwrite": False,
+                    "example_num": 100,
+                    "generate_answer_num" : 5,
+                    "batch_size": 1,
+                    "lang": lang,
+                }
+                result = process_task(config, model_config)
+                test += len(result)
+                
+                # if result:
+                #     error_log.append(result)
+                #     with open(os.path.join("logs", error_log_file), 'w') as log_file:
+                #         json.dump(error_log, log_file, indent=4, ensure_ascii=False)
+            if test == 0: break
+>>>>>>> 5210bbf346f6b64b8e056fa9f1f582bfc4e122e4
 
         del model_config
         torch.cuda.empty_cache()

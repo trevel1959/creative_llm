@@ -28,9 +28,9 @@ def text_models_single(config, task_prompt, query, max_length=1024):
         response = client.chat.completions.create(
             model="gpt-4o-mini",  # 원하는 GPT-4 모델 지정
             messages=[
-                {"role": "system", "content": f"""주어진 질문을 따라, 창의적이고 독창적인 이야기를 {config["generate_answer_num"]+2}개 생성하세요."""},
-                # {"role": "system", "content": f"""For the following questions, please generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations for each idea"},
-                # {"role": "system", "content": f"""YOU MUST Write the numbers before each answer as follows: "1.", "2."."""},
+                # {"role": "system", "content": f"""주어진 질문을 따라, 창의적이고 독창적인 이야기를 {config["generate_answer_num"]+2}개 생성하세요."""},
+                {"role": "system", "content": f"""For the following questions, please generate {config['generate_answer_num']+2} CREATIVE and ORIGINAL ideas with detailed explanations for each idea"""},
+                {"role": "system", "content": f"""YOU MUST Write the numbers before each answer as follows: "1.", "2."."""},
                 {"role": "system", "content": config["stimuli"]["text"]},
                 {"role": "user", "content": task_prompt + query},
             ],
@@ -143,7 +143,7 @@ def process_task(logger, config):
     logger.info(f"Task Finish!\tExecution time: {int(exe_time // 3600)}h {int((exe_time % 3600) // 60)}m {exe_time % 60:.2f}s\n")
     
     return num_fail, num_total
-    
+
 def task_execution_manager(lang):
     logger = set_logger(logging.INFO)
     
@@ -183,22 +183,47 @@ def task_execution_manager(lang):
         # if invalid_result == 0: break
         break
     return
-    
-def delete_invalid_json_files(folder_path):
-    deleted_count = 0
-    
+
+def check_and_delete_invalid_json_files(folder_path):
+    deleted_files = []
+
+    # 폴더 및 하위 폴더 내의 모든 파일에 대해 작업 수행
     for root, dirs, files in os.walk(folder_path):
-        print(root, len(files))
-        # for file in files:
-        #     if file == 'metadata.json':
-        #         file_path = os.path.join(root, file)
-        #         print(file_path)
+        for filename in files:
+            if filename.endswith('.json'):
+                file_path = os.path.join(root, filename)
+                
+                try:
+                    # JSON 파일 열기
+                    with open(file_path, 'r', encoding='utf-8') as file:
+                        data = json.load(file)
+                    
+                    # JSON이 문자열 리스트인지 확인
+                    if isinstance(data, list) and all(isinstance(item, str) for item in data):
+                        # 리스트의 길이가 5가 아니거나 빈 문자열이 있는지 확인
+                        if len(data) != 5 or any(item == "" for item in data):
+                            os.remove(file_path)
+                            deleted_files.append(file_path)
+                    else:
+                        # JSON이 리스트가 아닌 경우 파일 삭제
+                        os.remove(file_path)
+                        deleted_files.append(file_path)
+                        
+                except (json.JSONDecodeError, IOError) as e:
+                    # JSON 파일이 아닌 경우 또는 파일 열기에 실패한 경우 파일 삭제
+                    os.remove(file_path)
+                    deleted_files.append(file_path)
     
-        #         os.remove(file_path)
+    # 삭제된 파일 목록을 텍스트 파일로 기록
+    with open('deleted_files.txt', 'w', encoding='utf-8') as output_file:
+        for deleted_file in deleted_files:
+            output_file.write(f"{deleted_file}\n")
+
+    return deleted_files
 
 if(__name__ == "__main__"):
     with open("apikey.txt", "r") as apikey_file:
         os.environ["OPENAI_API_KEY"] = apikey_file.read()
     
-    task_execution_manager(lang = "ko")
-    # delete_invalid_json_files("result_txt\\tasks\\is_task_prompt\\openai")
+    task_execution_manager(lang = "en")
+    # print(check_and_delete_invalid_json_files("result_txt\\tasks\\im_task_prompt\\openai"))

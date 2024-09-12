@@ -92,9 +92,11 @@ def text_models_batch(model_config, prompt, task_prompt, queries, max_length=102
             attention_mask=attention_mask,
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
             max_new_tokens=1024,
+            num_beams=5,
             do_sample=True,
             temperature=0.9,
-            top_p=0.7
+            top_p=0.7,
+            early_stopping=True
         )
 
     # 출력 토큰을 텍스트로 변환
@@ -107,12 +109,12 @@ def making_instructions(config):
         "llama3inst": Template("""<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\n$system_prompt$system_stimuli<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n$user_query<|eot_id|><|start_header_id|>assistant<|end_header_id|> 1."""),
         # "qwen2chat": Template("""<s>$system_prompt$system_stimuli\n$user_query Assistant: 1."""),   # temp
         "mistralinst": Template("""<s>[INST] $system_prompt$system_stimuli\n# question:\n$user_query [/INST] Assistant: 1."""),   # https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.1/discussions/49
-        "default": Template("""User: $system_prompt$system_stimuli\n$user_query\nAssistant: 1.""") # temp
+        "default": Template("""$system_prompt$system_stimuli\n$user_query\n1.""") # temp
     }
     system_prompt = {
         "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
         "ko": f"""\n주어진 질문을 따라, 창의적이고 독창적인 아이디어를 상세한 설명과 함께 {config["generate_answer_num"]+2}개 생성하세요.""",
-        "cn": f"""\n对于以下问题，请生成 {config["generate_answer_num"]+2} 个富有创意和原创性的想法，并提供详细的解释。请在每个答复中并记号码。你必须用中文回答。"""
+        "cn": f"""\n对于以下问题，请生成 {config["generate_answer_num"]+2} 个富有创意和原创性的想法，并提供详细的解释。你必须用中文回答。"""
     }
     system_stimuli = config["stimuli"]["text"]
     
@@ -214,7 +216,7 @@ def process_task(config, model_config):
 
     error_log = {}
     prev_regen_query = set()
-    loop_MAX = 5
+    loop_MAX = 1
     
     for attempt in range(loop_MAX):
         failed_query, num_total_query = make_and_save_answers(config, model_config, prompt, folder_path)
@@ -255,7 +257,7 @@ def task_execution_manager(lang = "en"):
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["llama3inst"]
+    model_list = ["llama2", "llama3", "qwen2", "mistral"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -272,7 +274,7 @@ def task_execution_manager(lang = "en"):
                 "overwrite": False,
                 "example_num": 100,
                 "generate_answer_num" : 5,
-                "batch_size": 34,
+                "batch_size": 1,
                 "lang": lang,
             }
             result = process_task(config, model_config)
@@ -286,4 +288,4 @@ def task_execution_manager(lang = "en"):
         torch.cuda.empty_cache()
 
 if __name__ == "__main__":
-    task_execution_manager(lang = "cn")
+    task_execution_manager(lang = "en")
