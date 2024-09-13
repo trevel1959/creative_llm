@@ -93,8 +93,8 @@ def text_models_batch(model_config, input_strs, max_length=1024):
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
             max_new_tokens=1024,
             do_sample=True,
-            temperature = 0.9,
-            top_p = 0.7
+            temperature = 1.3,
+            top_p = 0.9
         )
 
     # 출력 토큰을 텍스트로 변환
@@ -237,7 +237,7 @@ def task_main(lang = "en"):
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["qwen2chat"]
+    model_list = ["qwen2chat", "mistralinst", "llama3.1inst", "llama2chat"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
