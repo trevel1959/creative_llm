@@ -163,14 +163,9 @@ def making_instructions(config):
         "default": Template("""$system_prompt$system_stimuli\nUSER:\n$user_query""") # temp
     }
     system_prompt = {
-<<<<<<< HEAD
         "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL ideas with detailed explanations.""",
         "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]+2}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요. 답변은 반드시 한국어로 하세요.""",
         "cn": f"""\n根据所给的问题，生成{config["generate_answer_num"]+2}个具有创造性和独特性的想法，并附上详细说明。答案必须用中文书写。"""
-=======
-        "en": f"""\nFor the following questions, generate {config["generate_answer_num"]+2} CREATIVE and ORIGINAL synopsis of stoires. Make sure to print out the answer in English.""",
-        "ko": f"""\n주어진 질문을 따라, {config["generate_answer_num"]+2}개의 창의적이고 독창적인 아이디어를 상세한 설명과 함께 생성하세요. 답변은 반드시 한국어로 출력하세요.""",
->>>>>>> 5210bbf346f6b64b8e056fa9f1f582bfc4e122e4
     }
     system_stimuli = config["stimuli"]["text"]
     
@@ -278,11 +273,7 @@ def task_execution_manager(lang):
     image_list = sorted(glob.glob('images/*')) + [None]
     print(image_list)
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-<<<<<<< HEAD
     model_list = ["llava-mistral"]
-=======
-    model_list = ["llava-llama3"]
->>>>>>> 5210bbf346f6b64b8e056fa9f1f582bfc4e122e4
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -291,7 +282,6 @@ def task_execution_manager(lang):
         model_config = load_pipe(model_name)
         if model_config is None:
             continue
-<<<<<<< HEAD
         
         for task_type, stimuli, image_dir in itertools.product(task_list, stimuli_list, image_list):
             config = {
@@ -306,31 +296,6 @@ def task_execution_manager(lang):
                 "lang": lang,
             }
             result = process_task(config, model_config)
-=======
-
-        while True:
-            test = 0
-            for task_type, stimuli, image_dir in itertools.product(task_list, stimuli_list, image_list):
-                config = {
-                    "model_name": model_name,
-                    "task_type": task_type,
-                    "stimuli": stimuli,
-                    "image_dir": image_dir,
-                    "overwrite": False,
-                    "example_num": 100,
-                    "generate_answer_num" : 5,
-                    "batch_size": 1,
-                    "lang": lang,
-                }
-                result = process_task(config, model_config)
-                test += len(result)
-                
-                # if result:
-                #     error_log.append(result)
-                #     with open(os.path.join("logs", error_log_file), 'w') as log_file:
-                #         json.dump(error_log, log_file, indent=4, ensure_ascii=False)
-            if test == 0: break
->>>>>>> 5210bbf346f6b64b8e056fa9f1f582bfc4e122e4
 
         del model_config
         torch.cuda.empty_cache()
