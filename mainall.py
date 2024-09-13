@@ -237,7 +237,7 @@ def task_main(lang = "en"):
     stimuli_list = sorted(stimuli_list, key = lambda x: x["name"])
     
     task_list = sorted(glob.glob(f'{task_folder_path}/*'))
-    model_list = ["qwen2chat", "llama3inst"]
+    model_list = ["qwen2chat"]
 
     error_log_file = f"{datetime.now().strftime('%y%m%d_%H%M')}.json"
     error_log = []
@@ -269,4 +269,4 @@ def task_main(lang = "en"):
             break
 
 if __name__ == "__main__":
-    task_main(lang = "cn")
+    task_main(lang = "en")
